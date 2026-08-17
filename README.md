@@ -35,6 +35,29 @@ npx expo run:ios
 npx expo run:android
 ```
 
+## Backend (hosting-agnostic)
+
+The app talks to the MSTRMND OS agent runtime over the eve HTTP protocol
+(`/eve/v1/*`) at a **configured origin**. No deployment domain is compiled into
+the bundle, so the backend can move between Vercel, a container (ECS, Cloud Run,
+Fly, Railway, a VPS), or a laptop on the same network without touching app code.
+
+```bash
+cp .env.example .env
+# EXPO_PUBLIC_MSTRMND_API_URL=https://os.mstrmnd.example
+```
+
+Unset, the app runs in **demo mode** against local mock data rather than
+guessing a host. The chat footer shows which of the two is active.
+
+- `lib/config.ts` — resolves the base URL; the only place a host is named.
+- `lib/agent-client.ts` — creates sessions, streams NDJSON turns, sends
+  follow-ups, cancels turns. Streams incrementally through `expo/fetch` and
+  falls back to a single-shot read where response streaming is unavailable.
+
+The self-host path for the backend itself is documented in `mstrmnd-core`
+(`docs/portability.md`).
+
 ## Structure
 
 ```
@@ -55,4 +78,8 @@ components/
 
 constants/
   agents.ts            # Agent types and mock data
+
+lib/
+  config.ts            # Backend origin (EXPO_PUBLIC_MSTRMND_API_URL)
+  agent-client.ts      # eve HTTP protocol client — sessions + NDJSON streaming
 ```

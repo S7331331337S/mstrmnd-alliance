@@ -14,6 +14,8 @@ import { Avatar } from "@/components/ui/Avatar";
 import { Badge } from "@/components/ui/Badge";
 import { Spinner } from "@/components/ui/Spinner";
 import { MOCK_AGENTS } from "@/constants/agents";
+import { runTurn } from "@/lib/agent-client";
+import { backendLabel, isBackendConfigured } from "@/lib/config";
 
 interface Message {
   id: string;
@@ -42,13 +44,20 @@ export default function ChatScreen() {
   const listRef = useRef<FlatList>(null);
   const activeAgent = MOCK_AGENTS[0];
 
-  const sendMessage = () => {
+  // The eve session id, kept across turns so the conversation is continuous.
+  const sessionRef = useRef<string | null>(null);
+  // Live whenever a backend URL is configured — Vercel, a container, a laptop.
+  // Unconfigured, the screen runs the local demo instead of guessing a host.
+  const isLive = isBackendConfigured();
+
+  const sendMessage = async () => {
     if (!input.trim() || isStreaming) return;
 
+    const prompt = input.trim();
     const userMsg: Message = {
       id: Date.now().toString(),
       role: "user",
-      content: input.trim(),
+      content: prompt,
       timestamp: new Date(),
     };
 
@@ -56,27 +65,55 @@ export default function ChatScreen() {
     setInput("");
     setIsStreaming(true);
 
-    // Simulate streaming response
-    const streamingId = (Date.now() + 1).toString();
-    const responses = [
-      "Understood. Analyzing the request...",
-      "I've processed your input and formulated a comprehensive strategy. Here's my assessment:\n\n1. The primary objective is clear and well-defined.\n2. I recommend coordinating with Cipher for technical implementation.\n3. Nova can handle the research phase in parallel.\n\nShall I activate the full alliance protocol?",
-    ];
+    const replyId = (Date.now() + 1).toString();
 
-    setTimeout(() => {
-      setMessages((prev) => [
-        ...prev,
-        {
-          id: streamingId,
+    /** Insert or replace the assistant reply as its text accumulates. */
+    const upsertReply = (content: string, streaming: boolean) => {
+      setMessages((prev) => {
+        const reply: Message = {
+          id: replyId,
           role: "assistant",
-          content: responses[Math.floor(Math.random() * responses.length)],
+          content,
           agentId: "1",
           timestamp: new Date(),
-          streaming: false,
-        },
-      ]);
+          streaming,
+        };
+        const index = prev.findIndex((m) => m.id === replyId);
+        if (index === -1) return [...prev, reply];
+        const next = [...prev];
+        next[index] = reply;
+        return next;
+      });
+    };
+
+    if (!isLive) {
+      // Demo mode — no backend configured.
+      const responses = [
+        "Understood. Analyzing the request...",
+        "I've processed your input and formulated a comprehensive strategy. Here's my assessment:\n\n1. The primary objective is clear and well-defined.\n2. I recommend coordinating with Cipher for technical implementation.\n3. Nova can handle the research phase in parallel.\n\nShall I activate the full alliance protocol?",
+      ];
+      setTimeout(() => {
+        upsertReply(responses[Math.floor(Math.random() * responses.length)], false);
+        setIsStreaming(false);
+      }, 1500);
+      return;
+    }
+
+    try {
+      const { sessionId } = await runTurn(prompt, {
+        sessionId: sessionRef.current ?? undefined,
+        onText: (text) => upsertReply(text, true),
+        onDone: (text) => upsertReply(text || "(no response)", false),
+      });
+      sessionRef.current = sessionId;
+    } catch (error) {
+      upsertReply(
+        error instanceof Error ? error.message : "The alliance is unreachable.",
+        false,
+      );
+    } finally {
       setIsStreaming(false);
-    }, 1500);
+    }
   };
 
   const renderMessage = ({ item }: { item: Message }) => {
@@ -175,7 +212,7 @@ export default function ChatScreen() {
           </Pressable>
         </View>
         <Text className="text-[#333333] text-xs text-center">
-          MSTRMND Alliance · Multi-agent coordination
+          MSTRMND Alliance · {isLive ? backendLabel() : "demo mode"}
         </Text>
       </View>
     </KeyboardAvoidingView>
