@@ -14,7 +14,7 @@ import {
 import { ScreenChrome } from "@/components/brand/ScreenChrome";
 
 const ACTIONS = [
-  { title: "Create Plan", subtitle: "Define goals and map strategy", Icon: Crosshair, href: "/insights" as const },
+  { title: "Create Plan", subtitle: "Define goals and map strategy", Icon: Crosshair, href: "/(tabs)/insights" as const },
   { title: "Research", subtitle: "Gather insights and intelligence", Icon: Search, href: "/knowledge" as const },
   { title: "Build System", subtitle: "Design structures and workflows", Icon: Layers, href: "/automations" as const },
   { title: "Analyze", subtitle: "Evaluate data and performance", Icon: BarChart3, href: "/(tabs)/insights" as const },
