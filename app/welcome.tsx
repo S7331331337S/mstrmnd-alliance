@@ -32,7 +32,7 @@ export default function WelcomeScreen() {
 
   const enter = async () => {
     await AsyncStorage.setItem("mstrmnd.entered", "1");
-    router.replace("/(tabs)");
+    router.replace("/(tabs)/dashboard");
   };
 
   return (

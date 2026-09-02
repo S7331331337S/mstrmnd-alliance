@@ -16,5 +16,5 @@ export default function Index() {
     return <View className="flex-1 bg-black" />;
   }
 
-  return <Redirect href={entered ? "/(tabs)" : "/welcome"} />;
+  return <Redirect href={entered ? "/(tabs)/dashboard" : "/welcome"} />;
 }
