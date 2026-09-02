@@ -1,9 +1,8 @@
 import { Tabs } from "expo-router";
-import { Bot, Home, MessageSquare, Settings } from "lucide-react-native";
-import { View } from "react-native";
+import { BarChart3, Home, LayoutGrid, User } from "lucide-react-native";
 
-const TAB_BAR_BG = "#0a0a0a";
-const ACTIVE = "#8b5cf6";
+const TAB_BAR_BG = "#050505";
+const ACTIVE = "#ffffff";
 const INACTIVE = "#52525b";
 
 export default function TabLayout() {
@@ -15,17 +14,13 @@ export default function TabLayout() {
           backgroundColor: TAB_BAR_BG,
           borderTopColor: "#1a1a1a",
           borderTopWidth: 1,
-          height: 88,
-          paddingBottom: 24,
-          paddingTop: 12,
+          height: 84,
+          paddingBottom: 22,
+          paddingTop: 10,
         },
         tabBarActiveTintColor: ACTIVE,
         tabBarInactiveTintColor: INACTIVE,
-        tabBarLabelStyle: {
-          fontSize: 11,
-          fontWeight: "500",
-          marginTop: 2,
-        },
+        tabBarShowLabel: false,
       }}
     >
       <Tabs.Screen
@@ -36,24 +31,24 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="agents"
+        name="hub"
         options={{
-          title: "Agents",
-          tabBarIcon: ({ color, size }) => <Bot size={size} color={color} />,
+          title: "Hub",
+          tabBarIcon: ({ color, size }) => <LayoutGrid size={size} color={color} />,
         }}
       />
       <Tabs.Screen
-        name="chat"
+        name="insights"
         options={{
-          title: "Chat",
-          tabBarIcon: ({ color, size }) => <MessageSquare size={size} color={color} />,
+          title: "Insights",
+          tabBarIcon: ({ color, size }) => <BarChart3 size={size} color={color} />,
         }}
       />
       <Tabs.Screen
-        name="settings"
+        name="profile"
         options={{
-          title: "Settings",
-          tabBarIcon: ({ color, size }) => <Settings size={size} color={color} />,
+          title: "Profile",
+          tabBarIcon: ({ color, size }) => <User size={size} color={color} />,
         }}
       />
     </Tabs>

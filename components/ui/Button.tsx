@@ -24,7 +24,7 @@ const variantStyles: Record<Variant, { container: string; text: string }> = {
     text: "text-[#000000] font-semibold",
   },
   accent: {
-    container: "bg-[#8b5cf6] active:bg-[#7c3aed]",
+    container: "border border-[#e4e4e7] bg-transparent active:bg-[#1a1a1a]",
     text: "text-white font-semibold",
   },
   outline: {
@@ -44,7 +44,7 @@ const variantStyles: Record<Variant, { container: string; text: string }> = {
 const sizeStyles: Record<Size, { container: string; text: string }> = {
   sm: { container: "h-8 px-3 rounded-lg", text: "text-xs" },
   md: { container: "h-10 px-4 rounded-xl", text: "text-sm" },
-  lg: { container: "h-12 px-6 rounded-xl", text: "text-base" },
+  lg: { container: "h-12 px-6 rounded-full", text: "text-base" },
 };
 
 export function Button({
@@ -71,7 +71,7 @@ export function Button({
       {loading ? (
         <ActivityIndicator
           size="small"
-          color={variant === "default" || variant === "destructive" || variant === "accent" ? "#000" : "#fff"}
+          color={variant === "default" || variant === "destructive" ? "#000" : "#fff"}
         />
       ) : typeof children === "string" ? (
         <Text className={`${v.text} ${s.text}`}>{children}</Text>

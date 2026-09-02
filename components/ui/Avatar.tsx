@@ -22,7 +22,7 @@ const statusColor: Record<string, string> = {
   error: "bg-[#ef4444]",
 };
 
-export function Avatar({ initials, size = "md", status, accentColor = "#8b5cf6" }: AvatarProps) {
+export function Avatar({ initials, size = "md", status, accentColor = "#e4e4e7" }: AvatarProps) {
   const s = sizeMap[size];
 
   return (
