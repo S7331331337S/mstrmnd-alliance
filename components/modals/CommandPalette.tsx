@@ -29,7 +29,7 @@ const defaultCommands: Command[] = [
   { id: "agents", label: "Browse Agents", icon: <Bot size={16} color="#a1a1aa" />, action: () => {} },
   { id: "chat", label: "New Chat", icon: <MessageSquare size={16} color="#a1a1aa" />, action: () => {} },
   { id: "settings", label: "Open Settings", icon: <Settings size={16} color="#a1a1aa" />, action: () => {} },
-  { id: "activate", label: "Activate All Agents", icon: <Zap size={16} color="#8b5cf6" />, action: () => {} },
+  { id: "activate", label: "Activate All Agents", icon: <Zap size={16} color="#22c55e" />, action: () => {} },
 ];
 
 export function CommandPalette({ visible, onClose, commands = defaultCommands }: CommandPaletteProps) {

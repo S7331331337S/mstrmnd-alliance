@@ -22,7 +22,7 @@ export function Input({ label, error, hint, leftIcon, rightIcon, style, ...props
           error
             ? "border-[#ef4444]"
             : focused
-            ? "border-[#8b5cf6]"
+            ? "border-[#e4e4e7]"
             : "border-[#222222]"
         } bg-[#0a0a0a] px-3 h-11`}
       >

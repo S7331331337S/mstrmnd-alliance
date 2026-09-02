@@ -6,7 +6,7 @@ interface SpinnerProps {
   color?: string;
 }
 
-export function Spinner({ size = "small", color = "#8b5cf6" }: SpinnerProps) {
+export function Spinner({ size = "small", color = "#ffffff" }: SpinnerProps) {
   return (
     <View className="items-center justify-center">
       <ActivityIndicator size={size} color={color} />

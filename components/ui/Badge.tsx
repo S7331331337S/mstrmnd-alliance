@@ -15,7 +15,7 @@ const variantMap: Record<BadgeVariant, { bg: string; text: string; dot?: string 
   idle: { bg: "bg-[#1a1a1a]", text: "text-[#52525b]", dot: "bg-[#52525b]" },
   thinking: { bg: "bg-[#f59e0b20]", text: "text-[#f59e0b]", dot: "bg-[#f59e0b]" },
   error: { bg: "bg-[#ef444420]", text: "text-[#ef4444]", dot: "bg-[#ef4444]" },
-  accent: { bg: "bg-[#8b5cf620]", text: "text-[#8b5cf6]" },
+  accent: { bg: "bg-[#ffffff14]", text: "text-[#e4e4e7]" },
   outline: { bg: "bg-transparent border border-[#333333]", text: "text-[#a1a1aa]" },
 };
 

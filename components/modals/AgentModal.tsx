@@ -53,7 +53,7 @@ export function AgentModal({ agent, visible, onClose, onChat }: AgentModalProps)
           </View>
           <View className="flex-1 bg-[#111111] rounded-xl p-3 gap-1 border border-[#1a1a1a]">
             <Text className="text-[#52525b] text-xs">Model</Text>
-            <Text className="text-[#8b5cf6] text-xs font-semibold mt-1">{agent.model.split("-").slice(0, 2).join("-")}</Text>
+            <Text className="text-white text-xs font-semibold mt-1">{agent.model.split("-").slice(0, 2).join("-")}</Text>
           </View>
         </View>
 

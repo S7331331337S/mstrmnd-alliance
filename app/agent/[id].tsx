@@ -89,7 +89,7 @@ export default function AgentDetailScreen() {
               <Text className="text-[#52525b] text-xs font-medium uppercase tracking-widest">Configuration</Text>
               <View className="flex-row items-center justify-between">
                 <Text className="text-[#71717a] text-sm">Model</Text>
-                <Text className="text-[#8b5cf6] text-sm font-medium">{agent.model}</Text>
+                <Text className="text-white text-sm font-medium">{agent.model}</Text>
               </View>
               <View className="h-px bg-[#111111]" />
               <View className="flex-row items-center justify-between">
@@ -109,7 +109,7 @@ export default function AgentDetailScreen() {
             variant="accent"
             size="lg"
             fullWidth
-            onPress={() => router.push("/(tabs)/chat")}
+            onPress={() => router.push({ pathname: "/chat", params: { agentId: agent.id } })}
           >
             Start Session
           </Button>
@@ -128,7 +128,7 @@ export default function AgentDetailScreen() {
         agent={agent}
         visible={configVisible}
         onClose={() => setConfigVisible(false)}
-        onChat={() => router.push("/(tabs)/chat")}
+        onChat={() => router.push({ pathname: "/chat", params: { agentId: agent.id } })}
       />
     </View>
   );
