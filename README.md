@@ -5,6 +5,7 @@
 ## Stack
 
 - **Expo SDK 57** + `expo-router` v5 (file-based routing)
+- **Role:** mobile Operator client for Mastermind OS — not a separate product
 - **NativeWind v4** — Tailwind CSS for React Native (dark mode first)
 - **TypeScript**
 - **react-native-reanimated** + **react-native-gesture-handler** — animations
@@ -14,7 +15,7 @@
 
 ## Design System
 
-Pure monochromatic palette — black backgrounds, white text, violet accent (#8b5cf6). Vercel/iOS aesthetic with clean spacing and subtle borders.
+Pure monochromatic palette — platinum `#e8e2d0` over obsidian `#0a0a0b`. ONE accent only (matches mstrmnd-os). No second hue.
 
 ## Getting Started
 
@@ -44,7 +45,7 @@ Fly, Railway, a VPS), or a laptop on the same network without touching app code.
 
 ```bash
 cp .env.example .env
-# EXPO_PUBLIC_MSTRMND_API_URL=https://os.mstrmnd.example
+# EXPO_PUBLIC_MSTRMND_API_URL=https://mstrmnd-core.vercel.app
 ```
 
 Unset, the app runs in **demo mode** against local mock data rather than
