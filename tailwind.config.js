@@ -6,36 +6,37 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        // Align with mstrmnd-os: platinum #e8e2d0 over obsidian #0a0a0b. No second hue.
         background: {
-          DEFAULT: "#000000",
-          secondary: "#0a0a0a",
-          tertiary: "#111111",
-          elevated: "#1a1a1a",
+          DEFAULT: "#0a0a0b",
+          secondary: "#101012",
+          tertiary: "#16161a",
+          elevated: "#1e1e22",
         },
         border: {
-          DEFAULT: "#222222",
-          subtle: "#1a1a1a",
-          strong: "#333333",
+          DEFAULT: "#1e1e22",
+          subtle: "#16161a",
+          strong: "#2a2a30",
         },
         text: {
-          primary: "#ffffff",
-          secondary: "#a1a1aa",
-          tertiary: "#71717a",
-          muted: "#52525b",
+          primary: "#e8e2d0",
+          secondary: "#8a877d",
+          tertiary: "#55534c",
+          muted: "#55534c",
         },
         accent: {
-          DEFAULT: "#ffffff",
-          foreground: "#000000",
-          hover: "#e4e4e7",
-          muted: "#ffffff14",
+          DEFAULT: "#e8e2d0",
+          foreground: "#0a0a0b",
+          hover: "#f0ebe0",
+          muted: "#e8e2d014",
         },
-        success: "#22c55e",
-        warning: "#f59e0b",
-        destructive: "#ef4444",
+        success: "#8a877d",
+        warning: "#8a877d",
+        destructive: "#8a877d",
       },
       fontFamily: {
-        sans: ["Inter", "System"],
-        mono: ["SpaceMono", "monospace"],
+        sans: ["System"],
+        mono: ["ui-monospace", "monospace"],
       },
       borderRadius: {
         "2xl": "16px",
