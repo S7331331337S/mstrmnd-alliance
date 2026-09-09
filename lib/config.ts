@@ -8,7 +8,7 @@
  *
  * Set it per build/profile:
  *
- *   EXPO_PUBLIC_MSTRMND_API_URL=https://os.mstrmnd.example
+ *   EXPO_PUBLIC_MSTRMND_API_URL=https://mstrmnd-core.vercel.app
  *   EXPO_PUBLIC_MSTRMND_API_URL=http://192.168.1.20:3000   # local self-host
  *
  * Unset, the app runs in demo mode against local mock data — no network, no
