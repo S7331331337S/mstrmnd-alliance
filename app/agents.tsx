@@ -7,7 +7,7 @@ import { Header } from "@/components/layout/Header";
 import { Avatar } from "@/components/ui/Avatar";
 import { Badge } from "@/components/ui/Badge";
 import { AgentModal } from "@/components/modals/AgentModal";
-import { MOCK_AGENTS, type Agent } from "@/constants/agents";
+import { OS_ROSTER, type Agent } from "@/constants/agents";
 import { toast } from "sonner-native";
 
 export default function AgentsScreen() {
@@ -30,7 +30,7 @@ export default function AgentsScreen() {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ padding: 20, paddingBottom: insets.bottom + 24, gap: 10 }}
       >
-        {MOCK_AGENTS.map((agent) => (
+        {OS_ROSTER.map((agent) => (
           <Pressable
             key={agent.id}
             onPress={() => setSelected(agent)}

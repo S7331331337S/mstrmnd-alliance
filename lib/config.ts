@@ -11,8 +11,13 @@
  *   EXPO_PUBLIC_MSTRMND_API_URL=https://mstrmnd-core.vercel.app
  *   EXPO_PUBLIC_MSTRMND_API_URL=http://192.168.1.20:3000   # local self-host
  *
- * Unset, the app runs in demo mode against local mock data — no network, no
- * assumption about who is hosting the alliance.
+ * Optional eve session JWT (same token the OS signs into `mstrmnd_session`):
+ *
+ *   EXPO_PUBLIC_MSTRMND_SESSION=<jwt>
+ *
+ * When set, the agent client sends `Authorization: Bearer …` on `/eve/v1/*`
+ * calls. Unset, the app runs in demo mode against local stub data — no network,
+ * no assumption about who is hosting the alliance.
  */
 
 function normalize(url: string): string {
@@ -39,6 +44,21 @@ export function apiUrl(path: string): string {
   const base = apiBaseUrl();
   if (!base) throw new Error("EXPO_PUBLIC_MSTRMND_API_URL is not configured");
   return `${base}${path.startsWith("/") ? path : `/${path}`}`;
+}
+
+/**
+ * Optional OS session JWT for eve auth.
+ *
+ * mstrmnd-os `getSessionFromRequest` accepts either `Authorization: Bearer`
+ * or the `mstrmnd_session` cookie. Mobile/Expo cannot reliably share httpOnly
+ * cookies across origins, so this client prefers Bearer when the token is set
+ * (matching apps/board). Cookie-style `credentials: "include"` remains as a
+ * same-origin / web fallback.
+ */
+export function sessionToken(): string | null {
+  const raw = process.env.EXPO_PUBLIC_MSTRMND_SESSION;
+  if (!raw || raw.trim().length === 0) return null;
+  return raw.trim();
 }
 
 /** Short label for status surfaces — the host we are pointed at, or "demo". */

@@ -5,7 +5,7 @@ import { useRouter } from "expo-router";
 import { KeyRound, Settings as SettingsIcon, Shield, SlidersHorizontal, User } from "lucide-react-native";
 import { ScreenChrome } from "@/components/brand/ScreenChrome";
 import { ListRow } from "@/components/brand/ListRow";
-import { MOCK_AGENTS } from "@/constants/agents";
+import { OS_ROSTER } from "@/constants/agents";
 import { AUTOMATIONS } from "@/constants/ops";
 
 export default function ProfileScreen() {
@@ -32,7 +32,7 @@ export default function ProfileScreen() {
         <View className="flex-row gap-3">
           {[
             { label: "Projects", value: "24" },
-            { label: "Agents", value: String(MOCK_AGENTS.length) },
+            { label: "Agents", value: String(OS_ROSTER.length) },
             { label: "Automations", value: String(AUTOMATIONS.length) },
           ].map((stat) => (
             <View key={stat.label} className="flex-1 bg-[#0a0a0a] border border-[#1a1a1a] rounded-2xl p-3 items-center">

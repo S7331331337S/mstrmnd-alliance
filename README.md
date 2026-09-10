@@ -46,15 +46,28 @@ Fly, Railway, a VPS), or a laptop on the same network without touching app code.
 ```bash
 cp .env.example .env
 # EXPO_PUBLIC_MSTRMND_API_URL=https://mstrmnd-core.vercel.app
+# EXPO_PUBLIC_MSTRMND_SESSION=<os-session-jwt>   # optional; Bearer for eve
 ```
 
-Unset, the app runs in **demo mode** against local mock data rather than
-guessing a host. The chat footer shows which of the two is active.
+Unset API URL, the app runs in **demo mode** against the local OS roster stub
+rather than guessing a host. The chat footer shows which of the two is active.
 
-- `lib/config.ts` — resolves the base URL; the only place a host is named.
+### Auth (eve session)
+
+mstrmnd-os verifies the same session JWT the web app puts in the
+`mstrmnd_session` cookie — and also accepts `Authorization: Bearer <jwt>`
+(see `mstrmnd-os/lib/session.ts`). Alliance prefers Bearer via
+`EXPO_PUBLIC_MSTRMND_SESSION` because Expo cannot share httpOnly cookies with
+the OS origin. Cookie `credentials: "include"` remains as a same-origin / web
+fallback.
+
+- `lib/config.ts` — resolves the base URL + optional session token.
 - `lib/agent-client.ts` — creates sessions, streams NDJSON turns, sends
-  follow-ups, cancels turns. Streams incrementally through `expo/fetch` and
-  falls back to a single-shot read where response streaming is unavailable.
+  follow-ups, cancels turns; attaches Bearer when the session env is set.
+  Streams incrementally through `expo/fetch` and falls back to a single-shot
+  read where response streaming is unavailable.
+- `constants/agents.ts` — **OS roster stub** (Maestro + Board seats). Static
+  for now; not a live fetch.
 
 The self-host path for the backend itself is documented in `mstrmnd-core`
 (`docs/portability.md`).
@@ -78,9 +91,9 @@ components/
   modals/              # AgentModal, ConfirmDialog, CommandPalette
 
 constants/
-  agents.ts            # Agent types and mock data
+  agents.ts            # Agent types + OS roster stub (Maestro / Board seats)
 
 lib/
-  config.ts            # Backend origin (EXPO_PUBLIC_MSTRMND_API_URL)
-  agent-client.ts      # eve HTTP protocol client — sessions + NDJSON streaming
+  config.ts            # Backend origin + optional EXPO_PUBLIC_MSTRMND_SESSION
+  agent-client.ts      # eve HTTP client — Bearer auth, sessions + NDJSON streaming
 ```

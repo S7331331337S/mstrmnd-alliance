@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { Card, CardContent } from "@/components/ui/Card";
 import { AgentModal } from "@/components/modals/AgentModal";
-import { MOCK_AGENTS, CAPABILITY_LABELS, STATUS_COLOR } from "@/constants/agents";
+import { OS_ROSTER, CAPABILITY_LABELS, STATUS_COLOR } from "@/constants/agents";
 
 export default function AgentDetailScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
@@ -16,7 +16,7 @@ export default function AgentDetailScreen() {
   const insets = useSafeAreaInsets();
   const [configVisible, setConfigVisible] = useState(false);
 
-  const agent = MOCK_AGENTS.find((a) => a.id === id);
+  const agent = OS_ROSTER.find((a) => a.id === id);
 
   if (!agent) {
     return (

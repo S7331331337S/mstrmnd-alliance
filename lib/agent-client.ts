@@ -1,4 +1,4 @@
-import { apiUrl, isBackendConfigured } from "./config";
+import { apiUrl, isBackendConfigured, sessionToken } from "./config";
 
 /**
  * Client for the MSTRMND OS agent runtime.
@@ -8,6 +8,11 @@ import { apiUrl, isBackendConfigured } from "./config";
  * the same on every host, so this file contains no hosting assumptions: swap
  * the backend from Vercel to a container and only `EXPO_PUBLIC_MSTRMND_API_URL`
  * changes.
+ *
+ * Auth: when `EXPO_PUBLIC_MSTRMND_SESSION` is set, every eve call sends
+ * `Authorization: Bearer <jwt>`. That matches mstrmnd-os
+ * `lib/session.getSessionFromRequest`, which prefers Bearer over the
+ * `mstrmnd_session` cookie (cookie still works on web via credentials).
  *
  *   POST /eve/v1/session               → { sessionId }
  *   POST /eve/v1/session/:id           → follow-up message
@@ -66,6 +71,14 @@ function streamingFetch(): FetchLike {
   return globalThis.fetch;
 }
 
+/** Headers for eve calls: JSON/Accept plus optional Bearer session JWT. */
+function eveHeaders(extra: Record<string, string> = {}): Record<string, string> {
+  const headers: Record<string, string> = { ...extra };
+  const token = sessionToken();
+  if (token) headers.Authorization = `Bearer ${token}`;
+  return headers;
+}
+
 async function postJson<T>(
   path: string,
   body: unknown,
@@ -73,8 +86,10 @@ async function postJson<T>(
 ): Promise<T> {
   const response = await globalThis.fetch(apiUrl(path), {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: eveHeaders({ "Content-Type": "application/json" }),
     body: JSON.stringify(body),
+    // Cookie fallback for same-origin / web previews that already hold
+    // `mstrmnd_session`; native Expo relies on Bearer above.
     credentials: "include",
     signal,
   });
@@ -136,9 +151,10 @@ export async function streamSession(
 ): Promise<string> {
   const response = await streamingFetch()(
     apiUrl(`/eve/v1/session/${sessionId}/stream`),
-    // Cookies come from the platform cookie store; `credentials` is omitted
-    // because the streaming implementation does not accept every init option.
-    { headers: { Accept: "application/x-ndjson" }, signal },
+    {
+      headers: eveHeaders({ Accept: "application/x-ndjson" }),
+      signal,
+    },
   );
 
   if (!response.ok) {
