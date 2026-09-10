@@ -1,8 +1,37 @@
+/**
+ * OS roster stub — static seats aligned to Mastermind OS / Board.
+ *
+ * Mirrors mstrmnd-os Alliance minds (Maestro + specialists) and the Board
+ * seats used by apps/board (`architect` … `chair`). Not a live fetch yet —
+ * swap for `/eve` or Board API when that surface ships. UI should treat this
+ * as the operating roster, not demo filler.
+ */
+
 export type AgentStatus = "active" | "idle" | "thinking" | "error";
-export type AgentCapability = "reasoning" | "coding" | "research" | "creative" | "analysis" | "planning";
+export type AgentCapability =
+  | "reasoning"
+  | "coding"
+  | "research"
+  | "creative"
+  | "analysis"
+  | "planning";
+
+export type AgentSeat =
+  | "maestro"
+  | "researcher"
+  | "critic"
+  | "memory-keeper"
+  | "architect"
+  | "operator"
+  | "closer"
+  | "contrarian"
+  | "visionary"
+  | "quant"
+  | "storyteller"
+  | "chair";
 
 export interface Agent {
-  id: string;
+  id: AgentSeat;
   name: string;
   role: string;
   description: string;
@@ -23,80 +52,168 @@ export interface Message {
   isStreaming?: boolean;
 }
 
-export const MOCK_AGENTS: Agent[] = [
+/** Static OS roster stub (Maestro + Board seats). */
+export const OS_ROSTER: Agent[] = [
   {
-    id: "1",
-    name: "Data Analyst",
-    role: "Signals & performance",
-    description: "Reads warehouse signals, scores segments, and ships Q-level performance packs.",
+    id: "maestro",
+    name: "Maestro",
+    role: "Root orchestrator",
+    description:
+      "Decomposes goals, pulls Third-Mind context, delegates to specialists, and executes.",
     status: "active",
-    capabilities: ["analysis", "research", "reasoning"],
-    model: "gpt-4o",
-    messagesCount: 1284,
-    successRate: 98,
-    avatar: "DA",
-  },
-  {
-    id: "2",
-    name: "Content Strategist",
-    role: "Narrative & campaigns",
-    description: "Turns research into briefs, campaigns, and on-brand copy across channels.",
-    status: "active",
-    capabilities: ["creative", "planning", "research"],
-    model: "claude-3-5-sonnet",
-    messagesCount: 934,
-    successRate: 96,
-    avatar: "CS",
-  },
-  {
-    id: "3",
-    name: "Ops Orchestrator",
-    role: "Workflows & routing",
-    description: "Coordinates automations, agents, and handoffs across the operating layer.",
-    status: "thinking",
     capabilities: ["planning", "reasoning", "analysis"],
-    model: "gpt-4o",
-    messagesCount: 721,
-    successRate: 94,
-    avatar: "OO",
+    model: "mstrmnd-os",
+    messagesCount: 0,
+    successRate: 100,
+    avatar: "MA",
   },
   {
-    id: "4",
-    name: "Knowledge Steward",
-    role: "Store & retrieve",
-    description: "Indexes company docs, playbooks, and research for grounded answers.",
+    id: "researcher",
+    name: "Researcher",
+    role: "Evidence & synthesis",
+    description:
+      "Deep research and source synthesis; returns structured evidence briefs with confidence.",
+    status: "idle",
+    capabilities: ["research", "analysis", "reasoning"],
+    model: "mstrmnd-os",
+    messagesCount: 0,
+    successRate: 100,
+    avatar: "RS",
+  },
+  {
+    id: "critic",
+    name: "Critic",
+    role: "Adversarial review",
+    description:
+      "Surfaces risks and returns a prioritized list of improvements before the room commits.",
+    status: "idle",
+    capabilities: ["analysis", "reasoning", "planning"],
+    model: "mstrmnd-os",
+    messagesCount: 0,
+    successRate: 100,
+    avatar: "CR",
+  },
+  {
+    id: "memory-keeper",
+    name: "Memory-Keeper",
+    role: "Third-Mind curator",
+    description:
+      "Decides what is worth remembering and writes durable observations into the Third-Mind.",
     status: "idle",
     capabilities: ["research", "reasoning"],
-    model: "claude-3-5-sonnet",
-    messagesCount: 512,
-    successRate: 91,
-    avatar: "KS",
+    model: "mstrmnd-os",
+    messagesCount: 0,
+    successRate: 100,
+    avatar: "MK",
   },
   {
-    id: "5",
-    name: "Model Lab",
-    role: "Train & evaluate",
-    description: "Runs experiments, compares models, and publishes eval cards.",
+    id: "architect",
+    name: "The Architect",
+    role: "Systems & feasibility",
+    description:
+      "Can it actually be built, and what breaks first? Dependencies, failure modes, one-way doors.",
+    status: "active",
+    capabilities: ["coding", "analysis", "planning"],
+    model: "mstrmnd-os",
+    messagesCount: 0,
+    successRate: 100,
+    avatar: "AR",
+  },
+  {
+    id: "operator",
+    name: "The Operator",
+    role: "Execution & sequencing",
+    description:
+      "What ships Monday, and who owns it? Converts ambition into dated, owned deliverables.",
+    status: "active",
+    capabilities: ["planning", "reasoning", "analysis"],
+    model: "mstrmnd-os",
+    messagesCount: 0,
+    successRate: 100,
+    avatar: "OP",
+  },
+  {
+    id: "closer",
+    name: "The Closer",
+    role: "Revenue & demand",
+    description:
+      "Who pays, how much, and what makes them say yes? Starts from the buyer, not the product.",
     status: "idle",
-    capabilities: ["analysis", "coding", "research"],
-    model: "gpt-4o",
-    messagesCount: 388,
-    successRate: 97,
-    avatar: "ML",
+    capabilities: ["creative", "analysis", "planning"],
+    model: "mstrmnd-os",
+    messagesCount: 0,
+    successRate: 100,
+    avatar: "CL",
   },
   {
-    id: "6",
-    name: "Governance",
-    role: "Control & compliance",
-    description: "Enforces policy, access, and audit trails across the stack.",
-    status: "error",
-    capabilities: ["planning", "analysis"],
-    model: "claude-3-5-sonnet",
-    messagesCount: 267,
-    successRate: 89,
-    avatar: "GV",
+    id: "contrarian",
+    name: "The Contrarian",
+    role: "Adversarial review",
+    description:
+      "Here is how this fails. Names the load-bearing assumption nobody has tested.",
+    status: "idle",
+    capabilities: ["analysis", "reasoning"],
+    model: "mstrmnd-os",
+    messagesCount: 0,
+    successRate: 100,
+    avatar: "CN",
+  },
+  {
+    id: "visionary",
+    name: "The Visionary",
+    role: "Ambition & horizon",
+    description:
+      "What does this look like if it works completely? Keeps the 10x option open.",
+    status: "idle",
+    capabilities: ["creative", "planning", "reasoning"],
+    model: "mstrmnd-os",
+    messagesCount: 0,
+    successRate: 100,
+    avatar: "VS",
+  },
+  {
+    id: "quant",
+    name: "The Quant",
+    role: "Numbers & risk",
+    description:
+      "Show the unit economics. Converts proposals into money, time, and expected value.",
+    status: "idle",
+    capabilities: ["analysis", "reasoning"],
+    model: "mstrmnd-os",
+    messagesCount: 0,
+    successRate: 100,
+    avatar: "QT",
+  },
+  {
+    id: "storyteller",
+    name: "The Storyteller",
+    role: "Narrative & brand",
+    description:
+      "If you can't say it in one line, you don't have it. Positioning as a product decision.",
+    status: "idle",
+    capabilities: ["creative", "research", "planning"],
+    model: "mstrmnd-os",
+    messagesCount: 0,
+    successRate: 100,
+    avatar: "ST",
+  },
+  {
+    id: "chair",
+    name: "The Chair",
+    role: "Synthesis & decision",
+    description:
+      "Closes the room with a call: the decision, the real disagreement, and three actions this week.",
+    status: "thinking",
+    capabilities: ["planning", "reasoning", "analysis"],
+    model: "mstrmnd-os",
+    messagesCount: 0,
+    successRate: 100,
+    avatar: "CH",
   },
 ];
+
+/** @deprecated Prefer OS_ROSTER — kept so older imports keep compiling during the cutover. */
+export const MOCK_AGENTS = OS_ROSTER;
 
 export const STATUS_COLOR: Record<AgentStatus, string> = {
   active: "#22c55e",
@@ -113,3 +230,7 @@ export const CAPABILITY_LABELS: Record<AgentCapability, string> = {
   analysis: "Analysis",
   planning: "Planning",
 };
+
+export function getAgent(id: string): Agent | undefined {
+  return OS_ROSTER.find((a) => a.id === id);
+}

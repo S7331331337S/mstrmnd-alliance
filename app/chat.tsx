@@ -14,7 +14,7 @@ import { ArrowUp, Paperclip } from "lucide-react-native";
 import { Header } from "@/components/layout/Header";
 import { Avatar } from "@/components/ui/Avatar";
 import { Spinner } from "@/components/ui/Spinner";
-import { MOCK_AGENTS } from "@/constants/agents";
+import { OS_ROSTER } from "@/constants/agents";
 import { runTurn } from "@/lib/agent-client";
 import { backendLabel, isBackendConfigured } from "@/lib/config";
 
@@ -29,7 +29,7 @@ interface Message {
 export default function ChatScreen() {
   const insets = useSafeAreaInsets();
   const { agentId } = useLocalSearchParams<{ agentId?: string }>();
-  const agent = MOCK_AGENTS.find((a) => a.id === agentId) ?? MOCK_AGENTS[0];
+  const agent = OS_ROSTER.find((a) => a.id === agentId) ?? OS_ROSTER[0];
   const [messages, setMessages] = useState<Message[]>([
     {
       id: "1",
