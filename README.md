@@ -36,6 +36,28 @@ npx expo run:ios
 npx expo run:android
 ```
 
+## Preview rails (Expo web / EAS)
+
+Alliance preview is **Expo web** and **EAS**, not a dedicated Alliance Vercel host.
+
+```bash
+# Expo web (local browser preview)
+npx expo start --web
+
+# Static web export
+npx expo export -p web
+
+# EAS internal preview build
+eas build --profile preview
+
+# EAS Update (OTA) against a preview channel when configured
+eas update --branch preview
+```
+
+### Retired host — do not use
+
+`https://mstrmnd-alliance.vercel.app` is **dead** (`NOT_FOUND` / 404). It is **retired in docs only** — do not point traffic, env, or bookmarks at it. **No DNS work** is planned or required. Keep the OS origin at `https://mstrmnd-core.vercel.app`.
+
 ## Backend (hosting-agnostic)
 
 The app talks to the MSTRMND OS agent runtime over the eve HTTP protocol
@@ -46,7 +68,6 @@ Fly, Railway, a VPS), or a laptop on the same network without touching app code.
 ```bash
 cp .env.example .env
 # EXPO_PUBLIC_MSTRMND_API_URL=https://mstrmnd-core.vercel.app
-# EXPO_PUBLIC_MSTRMND_SESSION=<os-session-jwt>   # optional; Bearer for eve
 ```
 
 Unset API URL, the app runs in **demo mode** against the local OS roster stub
@@ -56,14 +77,19 @@ rather than guessing a host. The chat footer shows which of the two is active.
 
 mstrmnd-os verifies the same session JWT the web app puts in the
 `mstrmnd_session` cookie — and also accepts `Authorization: Bearer <jwt>`
-(see `mstrmnd-os/lib/session.ts`). Alliance prefers Bearer via
-`EXPO_PUBLIC_MSTRMND_SESSION` because Expo cannot share httpOnly cookies with
-the OS origin. Cookie `credentials: "include"` remains as a same-origin / web
-fallback.
+(see `mstrmnd-os/lib/session.ts`).
 
-- `lib/config.ts` — resolves the base URL + optional session token.
+**Prefer Settings sign-in** (runtime SecureStore / AsyncStorage) once the
+incoming runtime-session PR lands — same Board pattern: `POST {os}/api/auth/signin`
+with email/password + `x-mstrmnd-client: alliance`, then Bearer on `/eve/v1/*`.
+
+~~`EXPO_PUBLIC_MSTRMND_SESSION` env-paste~~ is **legacy / deprecated** and being
+removed. Do not rely on it for new setups; cookie `credentials: "include"`
+remains as a same-origin / web fallback only.
+
+- `lib/config.ts` — resolves the base URL + session token (runtime once landed).
 - `lib/agent-client.ts` — creates sessions, streams NDJSON turns, sends
-  follow-ups, cancels turns; attaches Bearer when the session env is set.
+  follow-ups, cancels turns; attaches Bearer when a session token is available.
   Streams incrementally through `expo/fetch` and falls back to a single-shot
   read where response streaming is unavailable.
 - `constants/agents.ts` — **OS roster stub** (Maestro + Board seats). Static
@@ -94,6 +120,6 @@ constants/
   agents.ts            # Agent types + OS roster stub (Maestro / Board seats)
 
 lib/
-  config.ts            # Backend origin + optional EXPO_PUBLIC_MSTRMND_SESSION
+  config.ts            # Backend origin + session token
   agent-client.ts      # eve HTTP client — Bearer auth, sessions + NDJSON streaming
 ```
