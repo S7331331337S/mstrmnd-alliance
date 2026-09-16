@@ -9,7 +9,8 @@ import { apiUrl, isBackendConfigured, sessionToken } from "./config";
  * the backend from Vercel to a container and only `EXPO_PUBLIC_MSTRMND_API_URL`
  * changes.
  *
- * Auth: when `EXPO_PUBLIC_MSTRMND_SESSION` is set, every eve call sends
+ * Auth: when a runtime OS session is present (Settings → Connect →
+ * SecureStore / AsyncStorage via `lib/session.ts`), every eve call sends
  * `Authorization: Bearer <jwt>`. That matches mstrmnd-os
  * `lib/session.getSessionFromRequest`, which prefers Bearer over the
  * `mstrmnd_session` cookie (cookie still works on web via credentials).
@@ -71,7 +72,7 @@ function streamingFetch(): FetchLike {
   return globalThis.fetch;
 }
 
-/** Headers for eve calls: JSON/Accept plus optional Bearer session JWT. */
+/** Headers for eve calls: JSON/Accept plus optional runtime Bearer session JWT. */
 function eveHeaders(extra: Record<string, string> = {}): Record<string, string> {
   const headers: Record<string, string> = { ...extra };
   const token = sessionToken();
