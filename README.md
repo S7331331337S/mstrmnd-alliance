@@ -12,6 +12,7 @@
 - **lucide-react-native** — icons
 - **sonner-native** — toast notifications
 - **@shopify/flash-list** — performant lists
+- **expo-secure-store** — OS session JWT on native (AsyncStorage on web)
 
 ## Design System
 
@@ -73,42 +74,51 @@ cp .env.example .env
 Unset API URL, the app runs in **demo mode** against the local OS roster stub
 rather than guessing a host. The chat footer shows which of the two is active.
 
-### Auth (eve session)
+### Auth (runtime OS session → Bearer)
 
 mstrmnd-os verifies the same session JWT the web app puts in the
 `mstrmnd_session` cookie — and also accepts `Authorization: Bearer <jwt>`
 (see `mstrmnd-os/lib/session.ts`).
 
-**Prefer Settings sign-in** (runtime SecureStore / AsyncStorage) once the
-incoming runtime-session PR lands — same Board pattern: `POST {os}/api/auth/signin`
-with email/password + `x-mstrmnd-client: alliance`, then Bearer on `/eve/v1/*`.
+Alliance matches the **Board** pattern (`mstrmnd-core` `apps/board`):
 
-~~`EXPO_PUBLIC_MSTRMND_SESSION` env-paste~~ is **legacy / deprecated** and being
-removed. Do not rely on it for new setups; cookie `credentials: "include"`
-remains as a same-origin / web fallback only.
+1. Settings → Connect with OS URL + email + password
+2. `POST {os}/api/auth/signin` with `x-mstrmnd-client: alliance` (+ `client: "alliance"` body)
+3. Store JWT in **SecureStore** (native) / **AsyncStorage** (web) under `mstrmnd.os.session`
+4. Send `Authorization: Bearer <jwt>` on every `/eve/v1/*` call
 
-- `lib/config.ts` — resolves the base URL + session token (runtime once landed).
-- `lib/agent-client.ts` — creates sessions, streams NDJSON turns, sends
-  follow-ups, cancels turns; attaches Bearer when a session token is available.
-  Streams incrementally through `expo/fetch` and falls back to a single-shot
-  read where response streaming is unavailable.
+There is **no** `EXPO_PUBLIC_MSTRMND_SESSION` env-paste path. Cookie
+`credentials: "include"` remains as a same-origin / web fallback only.
+
+- `lib/session.ts` — hydrate / get / set token; `signInToOs`
+- `lib/config.ts` — resolves the base URL; `sessionToken()` reads runtime only
+- `lib/agent-client.ts` — creates sessions, streams NDJSON turns; attaches Bearer
+  when a runtime session is present
 - `constants/agents.ts` — **OS roster stub** (Maestro + Board seats). Static
-  for now; not a live fetch.
+  for now; not a live fetch
 
 The self-host path for the backend itself is documented in `mstrmnd-core`
 (`docs/portability.md`).
+
+### Signed-in smoke checklist
+
+- [ ] **OS:** sign in at https://mstrmnd-core.vercel.app/sign-in → session survives refresh
+- [ ] **OS:** open `/cockpit` signed-in → renders (auth gate)
+- [ ] **OS:** agents/workspace path signed-in (not blank mock)
+- [ ] **Alliance:** Expo web or EAS preview → Settings Connect with same OS account → agents screen → chat hits `/eve/v1` with Bearer (not 401)
+- [ ] Confirm `mstrmnd-alliance.vercel.app` still retired / not used
 
 ## Structure
 
 ```
 app/
-  _layout.tsx          # Root layout
+  _layout.tsx          # Root layout (hydrateSession on mount)
   onboarding.tsx       # 3-step onboarding
   (tabs)/
     index.tsx          # Home — Agent Dashboard
     agents.tsx         # Agent Gallery + search/filter
     chat.tsx           # Chat session
-    settings.tsx       # Settings
+    settings.tsx       # Settings (OS Connect)
   agent/[id].tsx       # Agent detail
 
 components/
@@ -120,6 +130,7 @@ constants/
   agents.ts            # Agent types + OS roster stub (Maestro / Board seats)
 
 lib/
-  config.ts            # Backend origin + session token
+  session.ts           # Runtime OS session (SecureStore / AsyncStorage)
+  config.ts            # Backend origin + runtime sessionToken()
   agent-client.ts      # eve HTTP client — Bearer auth, sessions + NDJSON streaming
 ```
