@@ -134,3 +134,7 @@ lib/
   config.ts            # Backend origin + runtime sessionToken()
   agent-client.ts      # eve HTTP client — Bearer auth, sessions + NDJSON streaming
 ```
+
+## Voice spike (Labs)
+
+See [`docs/VOICE_SPIKE.md`](docs/VOICE_SPIKE.md) and `lib/voice/` — Expo SDK 57 stack fit vs [expo-gpt-live](https://github.com/davidmokos/expo-gpt-live). OpenAI Live only today; Grok/xAI transport is a rewrite. Not in production nav until SecureStore→Bearer dogfood is green.
