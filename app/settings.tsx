@@ -23,6 +23,7 @@ import {
   signInToOs,
 } from "@/lib/session";
 import { toast } from "sonner-native";
+import { haptics } from "@/lib/haptics";
 
 const DEFAULT_OS = "https://mstrmnd-core.vercel.app";
 
@@ -62,10 +63,12 @@ export default function SettingsScreen() {
       setDraftPassword("");
       setToken(result.token);
       setEmail(result.email);
+      haptics.success();
       toast.success("Connected to MSTRMND OS");
     } catch (err) {
       const message =
         err instanceof Error ? err.message : "Could not reach MSTRMND OS";
+      haptics.error();
       toast.error(message);
     } finally {
       setSaving(false);
@@ -73,6 +76,7 @@ export default function SettingsScreen() {
   };
 
   const disconnect = async () => {
+    haptics.destructive();
     await setSessionToken(null);
     setToken(null);
     setEmail(null);

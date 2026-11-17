@@ -17,6 +17,7 @@ import { Spinner } from "@/components/ui/Spinner";
 import { OS_ROSTER } from "@/constants/agents";
 import { runTurn } from "@/lib/agent-client";
 import { backendLabel, isBackendConfigured } from "@/lib/config";
+import { haptics } from "@/lib/haptics";
 
 interface Message {
   id: string;
@@ -53,6 +54,7 @@ export default function ChatScreen() {
   const sendMessage = async () => {
     if (!input.trim() || isStreaming) return;
     const prompt = input.trim();
+    haptics.primary();
     const userMsg: Message = {
       id: Date.now().toString(),
       role: "user",
@@ -95,6 +97,7 @@ export default function ChatScreen() {
       });
       sessionRef.current = sessionId;
     } catch (error) {
+      haptics.error();
       upsertReply(error instanceof Error ? error.message : "The operating layer is unreachable.");
     } finally {
       setIsStreaming(false);
