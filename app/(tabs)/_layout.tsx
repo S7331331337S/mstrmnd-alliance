@@ -14,8 +14,9 @@ export default function TabLayout() {
           backgroundColor: TAB_BAR_BG,
           borderTopColor: "#1a1a1a",
           borderTopWidth: 1,
-          height: 84,
-          paddingBottom: 22,
+          // No fixed height / bottom padding: the navigator adds the safe-area
+          // bottom inset itself, so the bar clears the gesture/3-button nav bar
+          // under edge-to-edge instead of sitting behind it.
           paddingTop: 10,
         },
         tabBarActiveTintColor: ACTIVE,

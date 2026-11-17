@@ -7,6 +7,8 @@ interface BadgeProps {
   label: string;
   variant?: BadgeVariant;
   dot?: boolean;
+  /** Extra NativeWind classes for the pill container, e.g. `self-start`. */
+  className?: string;
 }
 
 const variantMap: Record<BadgeVariant, { bg: string; text: string; dot?: string }> = {
@@ -19,11 +21,11 @@ const variantMap: Record<BadgeVariant, { bg: string; text: string; dot?: string 
   outline: { bg: "bg-transparent border border-[#333333]", text: "text-[#a1a1aa]" },
 };
 
-export function Badge({ label, variant = "default", dot = false }: BadgeProps) {
+export function Badge({ label, variant = "default", dot = false, className = "" }: BadgeProps) {
   const v = variantMap[variant];
 
   return (
-    <View className={`flex-row items-center gap-1.5 px-2 py-0.5 rounded-full ${v.bg}`}>
+    <View className={`flex-row items-center gap-1.5 px-2 py-0.5 rounded-full ${v.bg} ${className}`}>
       {dot && v.dot && (
         <View className={`w-1.5 h-1.5 rounded-full ${v.dot}`} />
       )}
