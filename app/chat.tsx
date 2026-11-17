@@ -1,8 +1,8 @@
-import React, { useMemo, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import {
   FlatList,
+  Keyboard,
   KeyboardAvoidingView,
-  Platform,
   Pressable,
   Text,
   TextInput,
@@ -29,6 +29,15 @@ interface Message {
 
 export default function ChatScreen() {
   const insets = useSafeAreaInsets();
+  const [keyboardOpen, setKeyboardOpen] = useState(false);
+  useEffect(() => {
+    const show = Keyboard.addListener("keyboardDidShow", () => setKeyboardOpen(true));
+    const hide = Keyboard.addListener("keyboardDidHide", () => setKeyboardOpen(false));
+    return () => {
+      show.remove();
+      hide.remove();
+    };
+  }, []);
   const { agentId } = useLocalSearchParams<{ agentId?: string }>();
   const agent = OS_ROSTER.find((a) => a.id === agentId) ?? OS_ROSTER[0];
   const [messages, setMessages] = useState<Message[]>([
@@ -106,7 +115,10 @@ export default function ChatScreen() {
 
   return (
     <KeyboardAvoidingView
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      // Edge-to-edge (SDK 57+): Android no longer resizes the window for the
+      // keyboard, so "height" leaves the composer under it. "padding" tracks the
+      // keyboard frame on both platforms.
+      behavior="padding"
       className="flex-1 bg-black"
     >
       <Header title="Agent Chat" subtitle={`${agent.name} · ${onlineLabel}`} showBack />
@@ -153,7 +165,7 @@ export default function ChatScreen() {
           ) : undefined
         }
       />
-      <View className="px-4 pt-2" style={{ paddingBottom: insets.bottom + 8 }}>
+      <View className="px-4 pt-2" style={{ paddingBottom: keyboardOpen ? 8 : insets.bottom + 8 }}>
         <View className="flex-row items-end gap-2 bg-[#0a0a0a] border border-[#1a1a1a] rounded-2xl px-4 py-2">
           <Paperclip size={16} color="#8a877d" />
           <TextInput

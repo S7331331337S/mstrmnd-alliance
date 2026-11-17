@@ -34,6 +34,7 @@ export function AgentModal({ agent, visible, onClose, onChat }: AgentModalProps)
               label={agent.status.charAt(0).toUpperCase() + agent.status.slice(1)}
               variant={agent.status as any}
               dot
+              className="self-start"
             />
           </View>
         </View>
