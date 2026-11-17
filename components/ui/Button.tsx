@@ -28,7 +28,7 @@ const variantStyles: Record<Variant, { container: string; text: string }> = {
     text: "text-white font-semibold",
   },
   outline: {
-    container: "border border-[#333333] bg-transparent active:bg-[#1a1a1a]",
+    container: "border border-[#726f65] bg-transparent active:bg-[#1a1a1a]",
     text: "text-[#ffffff] font-medium",
   },
   ghost: {
@@ -36,8 +36,8 @@ const variantStyles: Record<Variant, { container: string; text: string }> = {
     text: "text-[#a1a1aa] font-medium",
   },
   destructive: {
-    container: "bg-[#ef4444] active:bg-[#dc2626]",
-    text: "text-white font-semibold",
+    container: "bg-[#e08a7c] active:bg-[#c9766a]",
+    text: "text-[#0a0a0b] font-semibold",
   },
 };
 

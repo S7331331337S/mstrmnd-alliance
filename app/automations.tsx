@@ -47,10 +47,10 @@ export default function AutomationsScreen() {
             accessibilityState={{ selected: tab === t.key }}
             hitSlop={{ top: 8, bottom: 8, left: 4, right: 4 }}
             className={`px-4 py-1.5 rounded-full border ${
-              tab === t.key ? "bg-white border-white" : "border-[#222222]"
+              tab === t.key ? "bg-white border-white" : "border-[#726f65]"
             }`}
           >
-            <Text className={`text-xs font-medium ${tab === t.key ? "text-black" : "text-[#71717a]"}`}>
+            <Text className={`text-xs font-medium ${tab === t.key ? "text-black" : "text-[#8a877d]"}`}>
               {t.label}
             </Text>
           </Pressable>
@@ -74,7 +74,7 @@ export default function AutomationsScreen() {
           ))}
           {items.length === 0 && (
             <View className="py-10 items-center">
-              <Text className="text-[#52525b] text-sm">Nothing in {tab}</Text>
+              <Text className="text-[#8a877d] text-sm">Nothing in {tab}</Text>
             </View>
           )}
         </View>

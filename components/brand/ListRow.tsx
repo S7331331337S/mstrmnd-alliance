@@ -39,7 +39,7 @@ export function ListRow({
         </View>
       ) : null}
       <Text className="flex-1 text-white text-sm font-medium">{label}</Text>
-      {value ? <Text className="text-[#71717a] text-sm">{value}</Text> : null}
+      {value ? <Text className="text-[#8a877d] text-sm">{value}</Text> : null}
       {toggle ? (
         <Switch
           value={toggleValue}
@@ -49,11 +49,11 @@ export function ListRow({
           }}
           accessibilityLabel={label}
           accessibilityRole="switch"
-          trackColor={{ true: "#22c55e", false: "#222222" }}
+          trackColor={{ true: "#22c55e", false: "#726f65" }}
           thumbColor="#ffffff"
         />
       ) : onPress ? (
-        <ChevronRight size={16} color="#52525b" />
+        <ChevronRight size={16} color="#8a877d" />
       ) : null}
     </Pressable>
   );

@@ -35,7 +35,7 @@ export default function HubScreen() {
       >
         <View className="mb-2">
           <Text className="text-white text-2xl font-bold tracking-tight">Command Center</Text>
-          <Text className="text-[#71717a] text-sm mt-1">One intelligence layer. Limitless outcomes.</Text>
+          <Text className="text-[#8a877d] text-sm mt-1">One intelligence layer. Limitless outcomes.</Text>
         </View>
 
         {ACTIONS.map(({ title, subtitle, Icon, href }) => (
@@ -51,9 +51,9 @@ export default function HubScreen() {
             </View>
             <View className="flex-1">
               <Text className="text-white text-sm font-semibold">{title}</Text>
-              <Text className="text-[#71717a] text-xs mt-0.5">{subtitle}</Text>
+              <Text className="text-[#8a877d] text-xs mt-0.5">{subtitle}</Text>
             </View>
-            <ChevronRight size={16} color="#52525b" />
+            <ChevronRight size={16} color="#8a877d" />
           </Pressable>
         ))}
       </ScrollView>

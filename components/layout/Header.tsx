@@ -35,7 +35,7 @@ export function Header({ title, subtitle, showBack = false, rightAction }: Heade
           <View className="flex-1">
             <Text accessibilityRole="header" className="text-white text-lg font-bold tracking-tight">{title}</Text>
             {subtitle && (
-              <Text className="text-[#52525b] text-xs mt-0.5">{subtitle}</Text>
+              <Text className="text-[#8a877d] text-xs mt-0.5">{subtitle}</Text>
             )}
           </View>
         </View>

@@ -29,7 +29,7 @@ export function Tabs({ tabs, activeKey, onChange }: TabsProps) {
           >
             <Text
               className={`text-sm font-medium ${
-                isActive ? "text-white" : "text-[#52525b]"
+                isActive ? "text-white" : "text-[#8a877d]"
               }`}
             >
               {tab.label}

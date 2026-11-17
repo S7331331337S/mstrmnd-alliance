@@ -106,7 +106,7 @@ export default function SettingsScreen() {
         keyboardShouldPersistTaps="handled"
         contentContainerStyle={{ padding: 20, paddingBottom: insets.bottom + 24 }}
       >
-        <Text className="text-[#71717a] text-xs uppercase tracking-widest mb-2 px-1">
+        <Text className="text-[#8a877d] text-xs uppercase tracking-widest mb-2 px-1">
           Connection
         </Text>
         <View className="bg-[#0a0a0a] border border-[#1a1a1a] rounded-2xl overflow-hidden mb-6 p-4 gap-3">
@@ -120,10 +120,10 @@ export default function SettingsScreen() {
                   <Text className="text-white text-sm font-medium">
                     MSTRMND OS connected
                   </Text>
-                  <Text className="text-[#71717a] text-xs mt-0.5">
+                  <Text className="text-[#8a877d] text-xs mt-0.5">
                     {email ?? "Session active"}
                   </Text>
-                  <Text className="text-[#52525b] text-xs mt-0.5">{hostLabel}</Text>
+                  <Text className="text-[#8a877d] text-xs mt-0.5">{hostLabel}</Text>
                 </View>
               </View>
               <Button variant="ghost" size="sm" onPress={() => void disconnect()}>
@@ -172,7 +172,7 @@ export default function SettingsScreen() {
               >
                 Connect
               </Button>
-              <Text className="text-[#52525b] text-xs leading-4">
+              <Text className="text-[#8a877d] text-xs leading-4">
                 {Platform.OS === "web"
                   ? "On web the session token is kept in browser storage. Prefer the native app for anything real."
                   : "Stored in the device keychain and sent only to your MSTRMND OS host."}
@@ -181,7 +181,7 @@ export default function SettingsScreen() {
           )}
         </View>
 
-        <Text className="text-[#71717a] text-xs uppercase tracking-widest mb-2 px-1">
+        <Text className="text-[#8a877d] text-xs uppercase tracking-widest mb-2 px-1">
           More
         </Text>
         <View className="bg-[#0a0a0a] border border-[#1a1a1a] rounded-2xl overflow-hidden">
@@ -195,7 +195,7 @@ export default function SettingsScreen() {
             />
           ))}
         </View>
-        <Text className="text-[#333333] text-xs text-center mt-8">MSTRMND v1.0.0</Text>
+        <Text className="text-[#8a877d] text-xs text-center mt-8">MSTRMND v1.0.0</Text>
       </ScrollView>
     </View>
   );

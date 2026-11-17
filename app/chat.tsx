@@ -155,10 +155,10 @@ export default function ChatScreen() {
       />
       <View className="px-4 pt-2" style={{ paddingBottom: insets.bottom + 8 }}>
         <View className="flex-row items-end gap-2 bg-[#0a0a0a] border border-[#1a1a1a] rounded-2xl px-4 py-2">
-          <Paperclip size={16} color="#52525b" />
+          <Paperclip size={16} color="#8a877d" />
           <TextInput
             placeholder="Ask anything..."
-            placeholderTextColor="#52525b"
+            placeholderTextColor="#8a877d"
             value={input}
             onChangeText={setInput}
             multiline
@@ -178,10 +178,10 @@ export default function ChatScreen() {
               input.trim() && !isStreaming ? "bg-white" : "bg-[#1a1a1a]"
             }`}
           >
-            <ArrowUp size={16} color={input.trim() && !isStreaming ? "#000000" : "#52525b"} />
+            <ArrowUp size={16} color={input.trim() && !isStreaming ? "#000000" : "#8a877d"} />
           </Pressable>
         </View>
-        <Text className="text-[#333333] text-xs text-center mt-2">
+        <Text className="text-[#8a877d] text-xs text-center mt-2">
           {isLive ? backendLabel() : "demo mode"}
         </Text>
       </View>

@@ -59,9 +59,9 @@ export default function DashboardScreen() {
               >
                 <View className="flex-row items-center justify-between">
                   <Text className="text-white text-sm font-medium">{item.title}</Text>
-                  <Text className="text-[#52525b] text-xs">{item.ago}</Text>
+                  <Text className="text-[#8a877d] text-xs">{item.ago}</Text>
                 </View>
-                <Text className="text-[#71717a] text-xs mt-1">{item.detail}</Text>
+                <Text className="text-[#8a877d] text-xs mt-1">{item.detail}</Text>
               </View>
             ))}
           </View>

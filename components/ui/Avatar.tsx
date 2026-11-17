@@ -19,9 +19,9 @@ const sizeMap = {
 
 const statusColor: Record<string, string> = {
   active: "bg-[#22c55e]",
-  idle: "bg-[#52525b]",
+  idle: "bg-[#8a877d]",
   thinking: "bg-[#f59e0b]",
-  error: "bg-[#ef4444]",
+  error: "bg-[#e08a7c]",
 };
 
 export function Avatar({ initials, size = "md", status, accentColor = "#e4e4e7", label }: AvatarProps) {

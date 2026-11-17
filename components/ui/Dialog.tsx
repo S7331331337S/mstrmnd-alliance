@@ -43,7 +43,7 @@ export function Dialog({
           <View className="gap-1.5">
             <Text className="text-white text-base font-semibold">{title}</Text>
             {description && (
-              <Text className="text-[#71717a] text-sm leading-5">{description}</Text>
+              <Text className="text-[#8a877d] text-sm leading-5">{description}</Text>
             )}
           </View>
 

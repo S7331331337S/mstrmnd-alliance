@@ -47,7 +47,7 @@ export default function AgentsScreen() {
             <Avatar initials={agent.avatar} size="md" status={agent.status} label={agent.name} />
             <View className="flex-1">
               <Text className="text-white text-sm font-semibold">{agent.name}</Text>
-              <Text className="text-[#71717a] text-xs mt-0.5">{agent.role}</Text>
+              <Text className="text-[#8a877d] text-xs mt-0.5">{agent.role}</Text>
             </View>
             <Badge
               label={agent.status === "active" ? "Active" : agent.status}

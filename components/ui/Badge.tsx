@@ -12,11 +12,11 @@ interface BadgeProps {
 const variantMap: Record<BadgeVariant, { bg: string; text: string; dot?: string }> = {
   default: { bg: "bg-[#1a1a1a]", text: "text-[#a1a1aa]" },
   active: { bg: "bg-[#22c55e20]", text: "text-[#22c55e]", dot: "bg-[#22c55e]" },
-  idle: { bg: "bg-[#1a1a1a]", text: "text-[#52525b]", dot: "bg-[#52525b]" },
+  idle: { bg: "bg-[#1a1a1a]", text: "text-[#8a877d]", dot: "bg-[#8a877d]" },
   thinking: { bg: "bg-[#f59e0b20]", text: "text-[#f59e0b]", dot: "bg-[#f59e0b]" },
-  error: { bg: "bg-[#ef444420]", text: "text-[#ef4444]", dot: "bg-[#ef4444]" },
+  error: { bg: "bg-[#e08a7c24]", text: "text-[#e08a7c]", dot: "bg-[#e08a7c]" },
   accent: { bg: "bg-[#ffffff14]", text: "text-[#e4e4e7]" },
-  outline: { bg: "bg-transparent border border-[#333333]", text: "text-[#a1a1aa]" },
+  outline: { bg: "bg-transparent border border-[#726f65]", text: "text-[#a1a1aa]" },
 };
 
 export function Badge({ label, variant = "default", dot = false }: BadgeProps) {

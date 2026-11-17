@@ -217,9 +217,9 @@ export const MOCK_AGENTS = OS_ROSTER;
 
 export const STATUS_COLOR: Record<AgentStatus, string> = {
   active: "#22c55e",
-  idle: "#52525b",
+  idle: "#8a877d",
   thinking: "#f59e0b",
-  error: "#ef4444",
+  error: "#e08a7c",
 };
 
 export const CAPABILITY_LABELS: Record<AgentCapability, string> = {
