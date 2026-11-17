@@ -1,6 +1,7 @@
 import React from "react";
 import { Modal, Pressable, Text, View } from "react-native";
 import { Button } from "./Button";
+import { haptics } from "@/lib/haptics";
 
 interface DialogProps {
   visible: boolean;
@@ -56,7 +57,11 @@ export function Dialog({
               <Button
                 variant={variant === "destructive" ? "destructive" : "default"}
                 size="sm"
-                onPress={onConfirm}
+                onPress={() => {
+                  if (variant === "destructive") haptics.destructive();
+                  else haptics.primary();
+                  onConfirm();
+                }}
               >
                 {confirmLabel}
               </Button>

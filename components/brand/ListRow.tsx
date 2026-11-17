@@ -1,6 +1,7 @@
 import React from "react";
 import { Pressable, Switch, Text, View } from "react-native";
 import { ChevronRight } from "lucide-react-native";
+import { haptics } from "@/lib/haptics";
 
 interface ListRowProps {
   icon?: React.ReactNode;
@@ -42,7 +43,10 @@ export function ListRow({
       {toggle ? (
         <Switch
           value={toggleValue}
-          onValueChange={onToggle}
+          onValueChange={(v) => {
+            haptics.selection();
+            onToggle?.(v);
+          }}
           accessibilityLabel={label}
           accessibilityRole="switch"
           trackColor={{ true: "#22c55e", false: "#222222" }}
