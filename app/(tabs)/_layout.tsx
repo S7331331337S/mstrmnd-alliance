@@ -1,11 +1,17 @@
 import { Tabs } from "expo-router";
 import { BarChart3, Home, LayoutGrid, User } from "lucide-react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const TAB_BAR_BG = "#050505";
 const ACTIVE = "#ffffff";
 const INACTIVE = "#8a877d";
 
+/** Icon (24) + label line box (~16) + top padding (8) + breathing room. */
+const BAR_CONTENT_HEIGHT = 64;
+
 export default function TabLayout() {
+  const insets = useSafeAreaInsets();
+
   return (
     <Tabs
       screenOptions={{
@@ -14,10 +20,12 @@ export default function TabLayout() {
           backgroundColor: TAB_BAR_BG,
           borderTopColor: "#1a1a1a",
           borderTopWidth: 1,
-          // No fixed height / bottom padding: the navigator adds the safe-area
-          // bottom inset itself, so the bar clears the gesture/3-button nav bar
-          // under edge-to-edge instead of sitting behind it.
-          paddingTop: 10,
+          // Explicit height = content + the safe-area bottom inset. The navigator's default
+          // 49pt content area is too short once labels are shown (#19), which clipped the
+          // labels into the system nav bar under edge-to-edge.
+          height: BAR_CONTENT_HEIGHT + insets.bottom,
+          paddingTop: 8,
+          paddingBottom: insets.bottom,
         },
         tabBarActiveTintColor: ACTIVE,
         tabBarInactiveTintColor: INACTIVE,
