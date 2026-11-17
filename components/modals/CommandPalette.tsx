@@ -60,18 +60,24 @@ export function CommandPalette({ visible, onClose, commands = defaultCommands }:
 
   return (
     <Modal visible={visible} transparent animationType="none" onRequestClose={onClose}>
-      <Pressable className="flex-1 bg-black/70" onPress={onClose}>
+      <Pressable
+        className="flex-1 bg-black/70"
+        onPress={onClose}
+        accessibilityRole="button"
+        accessibilityLabel="Close command palette"
+      >
         <Animated.View
           style={{ opacity, transform: [{ translateY }] }}
           className="mx-4 mt-24"
         >
-          <Pressable onPress={(e) => e.stopPropagation()}>
+          <Pressable onPress={(e) => e.stopPropagation()} accessible={false} accessibilityViewIsModal>
             <View className="bg-[#0a0a0a] border border-[#222222] rounded-2xl overflow-hidden">
               {/* Search bar */}
               <View className="flex-row items-center gap-3 px-4 py-3 border-b border-[#1a1a1a]">
                 <Search size={18} color="#52525b" />
                 <TextInput
                   autoFocus
+                  accessibilityLabel="Search commands"
                   placeholder="Type a command or search..."
                   placeholderTextColor="#52525b"
                   value={query}
@@ -89,6 +95,8 @@ export function CommandPalette({ visible, onClose, commands = defaultCommands }:
                 renderItem={({ item, index }) => (
                   <Pressable
                     onPress={() => { item.action(); onClose(); }}
+                    accessibilityRole="button"
+                    accessibilityLabel={item.description ? `${item.label}, ${item.description}` : item.label}
                     className="flex-row items-center gap-3 px-4 py-3 active:bg-[#1a1a1a]"
                   >
                     <View className="w-8 h-8 rounded-lg bg-[#111111] items-center justify-center">

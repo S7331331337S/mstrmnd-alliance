@@ -30,7 +30,9 @@ export default function AutomationsScreen() {
         rightAction={
           <Pressable
             onPress={() => toast.info("New automation coming soon")}
-            className="w-8 h-8 items-center justify-center"
+            accessibilityRole="button"
+            accessibilityLabel="New automation"
+            className="w-11 h-11 items-center justify-center"
           >
             <Plus size={18} color="#ffffff" />
           </Pressable>
@@ -41,6 +43,9 @@ export default function AutomationsScreen() {
           <Pressable
             key={t.key}
             onPress={() => setTab(t.key)}
+            accessibilityRole="tab"
+            accessibilityState={{ selected: tab === t.key }}
+            hitSlop={{ top: 8, bottom: 8, left: 4, right: 4 }}
             className={`px-4 py-1.5 rounded-full border ${
               tab === t.key ? "bg-white border-white" : "border-[#222222]"
             }`}

@@ -25,7 +25,7 @@ export function Badge({ label, variant = "default", dot = false }: BadgeProps) {
   return (
     <View className={`flex-row items-center gap-1.5 px-2 py-0.5 rounded-full ${v.bg}`}>
       {dot && v.dot && (
-        <View className={`w-1.5 h-1.5 rounded-full ${v.dot}`} />
+        <View accessibilityElementsHidden importantForAccessibility="no" className={`w-1.5 h-1.5 rounded-full ${v.dot}`} />
       )}
       <Text className={`text-xs font-medium ${v.text}`}>{label}</Text>
     </View>

@@ -27,9 +27,16 @@ export function Dialog({
 }: DialogProps) {
   return (
     <Modal visible={visible} transparent animationType="fade" onRequestClose={onClose}>
-      <Pressable className="flex-1 bg-black/70 items-center justify-center px-6" onPress={onClose}>
+      <Pressable
+        className="flex-1 bg-black/70 items-center justify-center px-6"
+        onPress={onClose}
+        accessibilityRole="button"
+        accessibilityLabel="Dismiss dialog"
+      >
         <Pressable
           onPress={(e) => e.stopPropagation()}
+          accessible={false}
+          accessibilityViewIsModal
           className="bg-[#0a0a0a] border border-[#222222] rounded-2xl w-full max-w-sm p-5 gap-4"
         >
           <View className="gap-1.5">

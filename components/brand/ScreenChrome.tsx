@@ -20,12 +20,14 @@ export function ScreenChrome({ rightLabel = "SYSTEM ONLINE", onMenu }: ScreenChr
       </View>
       <View className="flex-row items-center gap-3">
         <View className="flex-row items-center gap-1.5">
-          <View className="w-1.5 h-1.5 rounded-full bg-[#22c55e]" />
+          <View accessibilityElementsHidden importantForAccessibility="no" className="w-1.5 h-1.5 rounded-full bg-[#22c55e]" />
           <Text className="text-[#a1a1aa] text-[10px] tracking-widest">{rightLabel}</Text>
         </View>
         <Pressable
           onPress={onMenu ?? (() => router.push("/(tabs)/hub"))}
-          className="w-8 h-8 items-center justify-center"
+          accessibilityRole="button"
+          accessibilityLabel="Open hub"
+          className="w-11 h-11 items-center justify-center"
         >
           <Grid3x3 size={16} color="#e4e4e7" />
         </Pressable>

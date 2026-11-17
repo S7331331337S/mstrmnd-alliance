@@ -56,7 +56,9 @@ export default function ProfileScreen() {
 
         <Pressable
           onPress={() => router.push("/settings")}
-          className="flex-row items-center justify-center gap-2 py-3"
+          accessibilityRole="button"
+          accessibilityLabel="Open Settings"
+          className="flex-row items-center justify-center gap-2 py-3 min-h-[44px]"
         >
           <SettingsIcon size={14} color="#71717a" />
           <Text className="text-[#71717a] text-sm">Open Settings</Text>

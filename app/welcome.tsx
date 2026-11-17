@@ -75,6 +75,8 @@ export default function WelcomeScreen() {
       <View className="px-8">
         <Pressable
           onPress={enter}
+          accessibilityRole="button"
+          accessibilityLabel="Enter"
           className="h-14 rounded-full border border-[#e4e4e7] items-center justify-center active:bg-[#111111]"
         >
           <Text className="text-white text-base font-semibold tracking-widest">Enter</Text>

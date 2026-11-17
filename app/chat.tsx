@@ -118,7 +118,7 @@ export default function ChatScreen() {
           const isUser = item.role === "user";
           return (
             <View className={`flex-row gap-3 mb-4 ${isUser ? "flex-row-reverse" : ""}`}>
-              {!isUser && <Avatar initials={agent.avatar} size="sm" status={agent.status} />}
+              {!isUser && <Avatar initials={agent.avatar} size="sm" status={agent.status} label={agent.name} />}
               <View className={`max-w-[78%] gap-2 ${isUser ? "items-end" : "items-start"}`}>
                 <View
                   className={`rounded-2xl px-4 py-3 ${
@@ -141,8 +141,8 @@ export default function ChatScreen() {
         }}
         ListFooterComponent={
           isStreaming ? (
-            <View className="flex-row gap-3 mb-4">
-              <Avatar initials={agent.avatar} size="sm" status="thinking" />
+            <View className="flex-row gap-3 mb-4" accessible accessibilityLabel={`${agent.name} is typing`} accessibilityLiveRegion="polite">
+              <Avatar initials={agent.avatar} size="sm" status="thinking" label={agent.name} />
               <View className="bg-[#111111] border border-[#1a1a1a] rounded-2xl px-4 py-3">
                 <Spinner size="small" />
               </View>
@@ -160,12 +160,17 @@ export default function ChatScreen() {
             onChangeText={setInput}
             multiline
             maxLength={2000}
+            accessibilityLabel="Message"
             className="flex-1 text-white text-sm py-1"
             style={{ color: "#ffffff", maxHeight: 120 }}
           />
           <Pressable
             onPress={sendMessage}
             disabled={!input.trim() || isStreaming}
+            accessibilityRole="button"
+            accessibilityLabel="Send message"
+            accessibilityState={{ disabled: !input.trim() || isStreaming }}
+            hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
             className={`w-8 h-8 rounded-full items-center justify-center mb-0.5 ${
               input.trim() && !isStreaming ? "bg-white" : "bg-[#1a1a1a]"
             }`}

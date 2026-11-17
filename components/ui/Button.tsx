@@ -42,8 +42,8 @@ const variantStyles: Record<Variant, { container: string; text: string }> = {
 };
 
 const sizeStyles: Record<Size, { container: string; text: string }> = {
-  sm: { container: "h-8 px-3 rounded-lg", text: "text-xs" },
-  md: { container: "h-10 px-4 rounded-xl", text: "text-sm" },
+  sm: { container: "min-h-[44px] px-3 rounded-lg", text: "text-xs" },
+  md: { container: "h-11 px-4 rounded-xl", text: "text-sm" },
   lg: { container: "h-12 px-6 rounded-full", text: "text-base" },
 };
 
@@ -62,7 +62,10 @@ export function Button({
 
   return (
     <Pressable
+      accessibilityRole="button"
+      accessibilityLabel={typeof children === "string" ? children : undefined}
       {...props}
+      accessibilityState={{ disabled: isDisabled, busy: loading }}
       disabled={isDisabled}
       className={`flex-row items-center justify-center ${v.container} ${s.container} ${
         fullWidth ? "w-full" : "self-start"

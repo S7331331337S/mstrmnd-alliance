@@ -28,6 +28,7 @@ export function Input({ label, error, hint, leftIcon, rightIcon, style, ...props
       >
         {leftIcon && <View className="mr-2">{leftIcon}</View>}
         <TextInput
+          accessibilityLabel={props.accessibilityLabel ?? label ?? props.placeholder}
           {...props}
           onFocus={(e) => { setFocused(true); props.onFocus?.(e); }}
           onBlur={(e) => { setFocused(false); props.onBlur?.(e); }}

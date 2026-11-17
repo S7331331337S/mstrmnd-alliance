@@ -27,6 +27,9 @@ export function ListRow({
     <Pressable
       onPress={onPress}
       disabled={!onPress && !toggle}
+      accessible={!toggle}
+      accessibilityRole={onPress ? "button" : undefined}
+      accessibilityLabel={value ? `${label}, ${value}` : label}
       className={`flex-row items-center gap-3 px-4 py-3.5 ${last ? "" : "border-b border-[#1a1a1a]"}`}
     >
       {icon ? (
@@ -40,6 +43,8 @@ export function ListRow({
         <Switch
           value={toggleValue}
           onValueChange={onToggle}
+          accessibilityLabel={label}
+          accessibilityRole="switch"
           trackColor={{ true: "#22c55e", false: "#222222" }}
           thumbColor="#ffffff"
         />
