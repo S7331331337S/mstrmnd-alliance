@@ -44,3 +44,9 @@ eas update:rollback --branch production
 
 ### Expo Go
 Expo Go ignores `expo-updates` for development, so `npx expo start` + Expo Go still works unchanged. Expo Go may log that `expo-updates` is not used; that is expected.
+
+## App Store Connect submit config
+
+`eas.json` → `submit.production.ios` has Team ID `7T9W2DC298`, ASC API key ID `76HNAVK2MX` and issuer ID `2693901f-d3ba-42af-98d1-19ecf07129a8` (verified in App Store Connect: the issuer ID matches, and the key is App Manager and Active). There is intentionally **no `ascApiKeyPath`**.
+
+The ASC API key (.p8) is uploaded to EAS credentials for @mstrmndgo once Expo access works; it is never committed. App Store/TestFlight submits need Steele's OK.
