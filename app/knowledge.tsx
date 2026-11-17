@@ -18,11 +18,11 @@ export default function KnowledgeScreen() {
       <Header title="Knowledge" showBack />
       <View className="px-5 pt-4">
         <View className="flex-row items-center gap-2 bg-[#0a0a0a] border border-[#1a1a1a] rounded-xl px-3 h-11">
-          <Search size={16} color="#52525b" />
+          <Search size={16} color="#8a877d" />
           <TextInput
             accessibilityLabel="Search knowledge"
             placeholder="Search knowledge..."
-            placeholderTextColor="#52525b"
+            placeholderTextColor="#8a877d"
             value={query}
             onChangeText={setQuery}
             className="flex-1 text-white text-sm"
@@ -43,7 +43,7 @@ export default function KnowledgeScreen() {
               <Folder size={16} color="#e4e4e7" />
             </View>
             <Text className="flex-1 text-white text-sm font-medium">{folder.name}</Text>
-            <Text className="text-[#71717a] text-sm">{folder.count}</Text>
+            <Text className="text-[#8a877d] text-sm">{folder.count}</Text>
           </View>
         ))}
       </ScrollView>

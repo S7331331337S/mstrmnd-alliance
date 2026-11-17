@@ -20,10 +20,10 @@ export function Input({ label, error, hint, leftIcon, rightIcon, style, ...props
       <View
         className={`flex-row items-center rounded-xl border ${
           error
-            ? "border-[#ef4444]"
+            ? "border-[#e08a7c]"
             : focused
             ? "border-[#e4e4e7]"
-            : "border-[#222222]"
+            : "border-[#726f65]"
         } bg-[#0a0a0a] px-3 h-11`}
       >
         {leftIcon && <View className="mr-2">{leftIcon}</View>}
@@ -33,13 +33,13 @@ export function Input({ label, error, hint, leftIcon, rightIcon, style, ...props
           onFocus={(e) => { setFocused(true); props.onFocus?.(e); }}
           onBlur={(e) => { setFocused(false); props.onBlur?.(e); }}
           className="flex-1 text-white text-sm"
-          placeholderTextColor="#52525b"
+          placeholderTextColor="#8a877d"
           style={[{ color: "#ffffff" }, style]}
         />
         {rightIcon && <View className="ml-2">{rightIcon}</View>}
       </View>
-      {error && <Text className="text-xs text-[#ef4444]">{error}</Text>}
-      {hint && !error && <Text className="text-xs text-[#52525b]">{hint}</Text>}
+      {error && <Text className="text-xs text-[#e08a7c]">{error}</Text>}
+      {hint && !error && <Text className="text-xs text-[#8a877d]">{hint}</Text>}
     </View>
   );
 }

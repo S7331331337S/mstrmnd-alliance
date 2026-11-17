@@ -26,7 +26,7 @@ export default function ProfileScreen() {
             <Text className="text-white text-2xl font-bold">SM</Text>
           </View>
           <Text className="text-white text-xl font-semibold">Steele Malone</Text>
-          <Text className="text-[#71717a] text-sm">Operator</Text>
+          <Text className="text-[#8a877d] text-sm">Operator</Text>
         </View>
 
         <View className="flex-row gap-3">
@@ -37,7 +37,7 @@ export default function ProfileScreen() {
           ].map((stat) => (
             <View key={stat.label} className="flex-1 bg-[#0a0a0a] border border-[#1a1a1a] rounded-2xl p-3 items-center">
               <Text className="text-white text-xl font-bold">{stat.value}</Text>
-              <Text className="text-[#52525b] text-xs mt-1">{stat.label}</Text>
+              <Text className="text-[#8a877d] text-xs mt-1">{stat.label}</Text>
             </View>
           ))}
         </View>
@@ -60,8 +60,8 @@ export default function ProfileScreen() {
           accessibilityLabel="Open Settings"
           className="flex-row items-center justify-center gap-2 py-3 min-h-[44px]"
         >
-          <SettingsIcon size={14} color="#71717a" />
-          <Text className="text-[#71717a] text-sm">Open Settings</Text>
+          <SettingsIcon size={14} color="#8a877d" />
+          <Text className="text-[#8a877d] text-sm">Open Settings</Text>
         </Pressable>
       </ScrollView>
     </View>

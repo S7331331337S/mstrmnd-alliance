@@ -67,7 +67,7 @@ export default function WelcomeScreen() {
         <Text className="text-white text-xl font-semibold tracking-[2px] mt-4">
           Welcome back MSTRMND
         </Text>
-        <Text className="text-[#71717a] text-sm mt-2 px-10 text-center">
+        <Text className="text-[#8a877d] text-sm mt-2 px-10 text-center">
           The operating layer for AI systems.
         </Text>
       </View>

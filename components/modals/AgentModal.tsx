@@ -29,7 +29,7 @@ export function AgentModal({ agent, visible, onClose, onChat }: AgentModalProps)
           <Avatar initials={agent.avatar} size="lg" status={agent.status} label={agent.name} />
           <View className="flex-1 gap-1">
             <Text className="text-white font-semibold text-base">{agent.name}</Text>
-            <Text className="text-[#71717a] text-sm">{agent.role}</Text>
+            <Text className="text-[#8a877d] text-sm">{agent.role}</Text>
             <Badge
               label={agent.status.charAt(0).toUpperCase() + agent.status.slice(1)}
               variant={agent.status as any}
@@ -44,22 +44,22 @@ export function AgentModal({ agent, visible, onClose, onChat }: AgentModalProps)
         {/* Stats */}
         <View className="flex-row gap-3">
           <View className="flex-1 bg-[#111111] rounded-xl p-3 gap-1 border border-[#1a1a1a]">
-            <Text className="text-[#52525b] text-xs">Messages</Text>
+            <Text className="text-[#8a877d] text-xs">Messages</Text>
             <Text className="text-white text-lg font-bold">{agent.messagesCount.toLocaleString()}</Text>
           </View>
           <View className="flex-1 bg-[#111111] rounded-xl p-3 gap-1 border border-[#1a1a1a]">
-            <Text className="text-[#52525b] text-xs">Success Rate</Text>
+            <Text className="text-[#8a877d] text-xs">Success Rate</Text>
             <Text className="text-white text-lg font-bold">{agent.successRate}%</Text>
           </View>
           <View className="flex-1 bg-[#111111] rounded-xl p-3 gap-1 border border-[#1a1a1a]">
-            <Text className="text-[#52525b] text-xs">Model</Text>
+            <Text className="text-[#8a877d] text-xs">Model</Text>
             <Text className="text-white text-xs font-semibold mt-1">{agent.model.split("-").slice(0, 2).join("-")}</Text>
           </View>
         </View>
 
         {/* Capabilities */}
         <View className="gap-2">
-          <Text className="text-[#52525b] text-xs font-medium uppercase tracking-wide">Capabilities</Text>
+          <Text className="text-[#8a877d] text-xs font-medium uppercase tracking-wide">Capabilities</Text>
           <View className="flex-row flex-wrap gap-2">
             {agent.capabilities.map((cap) => (
               <Badge key={cap} label={CAPABILITY_LABELS[cap]} variant="accent" />
@@ -69,7 +69,7 @@ export function AgentModal({ agent, visible, onClose, onChat }: AgentModalProps)
 
         {/* System Prompt */}
         <View className="gap-2">
-          <Text className="text-[#52525b] text-xs font-medium uppercase tracking-wide">Override Prompt</Text>
+          <Text className="text-[#8a877d] text-xs font-medium uppercase tracking-wide">Override Prompt</Text>
           <Input
             placeholder="Add a custom system instruction..."
             value={systemPrompt}

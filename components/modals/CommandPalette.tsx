@@ -74,12 +74,12 @@ export function CommandPalette({ visible, onClose, commands = defaultCommands }:
             <View className="bg-[#0a0a0a] border border-[#222222] rounded-2xl overflow-hidden">
               {/* Search bar */}
               <View className="flex-row items-center gap-3 px-4 py-3 border-b border-[#1a1a1a]">
-                <Search size={18} color="#52525b" />
+                <Search size={18} color="#8a877d" />
                 <TextInput
                   autoFocus
                   accessibilityLabel="Search commands"
                   placeholder="Type a command or search..."
-                  placeholderTextColor="#52525b"
+                  placeholderTextColor="#8a877d"
                   value={query}
                   onChangeText={setQuery}
                   className="flex-1 text-white text-sm"
@@ -105,23 +105,23 @@ export function CommandPalette({ visible, onClose, commands = defaultCommands }:
                     <View className="flex-1">
                       <Text className="text-white text-sm font-medium">{item.label}</Text>
                       {item.description && (
-                        <Text className="text-[#52525b] text-xs">{item.description}</Text>
+                        <Text className="text-[#8a877d] text-xs">{item.description}</Text>
                       )}
                     </View>
-                    <Text className="text-[#333333] text-xs">↩</Text>
+                    <Text className="text-[#8a877d] text-xs">↩</Text>
                   </Pressable>
                 )}
                 ListEmptyComponent={
                   <View className="py-10 items-center">
-                    <Text className="text-[#52525b] text-sm">No results found</Text>
+                    <Text className="text-[#8a877d] text-sm">No results found</Text>
                   </View>
                 }
               />
 
               {/* Footer hint */}
               <View className="flex-row gap-4 px-4 py-2 border-t border-[#1a1a1a]">
-                <Text className="text-[#333333] text-xs">↩ select</Text>
-                <Text className="text-[#333333] text-xs">esc close</Text>
+                <Text className="text-[#8a877d] text-xs">↩ select</Text>
+                <Text className="text-[#8a877d] text-xs">esc close</Text>
               </View>
             </View>
           </Pressable>

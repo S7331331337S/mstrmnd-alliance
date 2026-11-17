@@ -21,7 +21,7 @@ export default function AgentDetailScreen() {
   if (!agent) {
     return (
       <View className="flex-1 bg-black items-center justify-center">
-        <Text className="text-[#52525b]">Agent not found</Text>
+        <Text className="text-[#8a877d]">Agent not found</Text>
       </View>
     );
   }
@@ -51,10 +51,10 @@ export default function AgentDetailScreen() {
           <Avatar initials={agent.avatar} size="xl" status={agent.status} label={agent.name} />
           <View className="items-center gap-1">
             <Text className="text-white text-2xl font-bold">{agent.name}</Text>
-            <Text className="text-[#71717a] text-sm">{agent.role}</Text>
+            <Text className="text-[#8a877d] text-sm">{agent.role}</Text>
             <Badge label={agent.status} variant={agent.status as any} dot />
           </View>
-          <Text className="text-[#52525b] text-sm text-center px-8 leading-5">{agent.description}</Text>
+          <Text className="text-[#8a877d] text-sm text-center px-8 leading-5">{agent.description}</Text>
         </View>
 
         {/* Stats */}
@@ -66,7 +66,7 @@ export default function AgentDetailScreen() {
           ].map((stat) => (
             <View key={stat.label} className="flex-1 bg-[#0a0a0a] border border-[#1a1a1a] rounded-2xl p-3 items-center gap-1">
               <Text className="text-white text-xl font-bold">{stat.value}</Text>
-              <Text className="text-[#52525b] text-xs">{stat.label}</Text>
+              <Text className="text-[#8a877d] text-xs">{stat.label}</Text>
             </View>
           ))}
         </View>
@@ -75,7 +75,7 @@ export default function AgentDetailScreen() {
         <Card elevated bordered>
           <CardContent>
             <View className="pt-4 gap-3">
-              <Text className="text-[#52525b] text-xs font-medium uppercase tracking-widest">Capabilities</Text>
+              <Text className="text-[#8a877d] text-xs font-medium uppercase tracking-widest">Capabilities</Text>
               <View className="flex-row flex-wrap gap-2">
                 {agent.capabilities.map((cap) => (
                   <Badge key={cap} label={CAPABILITY_LABELS[cap]} variant="accent" />
@@ -89,14 +89,14 @@ export default function AgentDetailScreen() {
         <Card elevated bordered>
           <CardContent>
             <View className="pt-4 gap-3">
-              <Text className="text-[#52525b] text-xs font-medium uppercase tracking-widest">Configuration</Text>
+              <Text className="text-[#8a877d] text-xs font-medium uppercase tracking-widest">Configuration</Text>
               <View className="flex-row items-center justify-between">
-                <Text className="text-[#71717a] text-sm">Model</Text>
+                <Text className="text-[#8a877d] text-sm">Model</Text>
                 <Text className="text-white text-sm font-medium">{agent.model}</Text>
               </View>
               <View className="h-px bg-[#111111]" />
               <View className="flex-row items-center justify-between">
-                <Text className="text-[#71717a] text-sm">Status</Text>
+                <Text className="text-[#8a877d] text-sm">Status</Text>
                 <View className="flex-row items-center gap-2">
                   <View accessibilityElementsHidden importantForAccessibility="no" className="w-2 h-2 rounded-full" style={{ backgroundColor: STATUS_COLOR[agent.status] }} />
                   <Text className="text-[#a1a1aa] text-sm capitalize">{agent.status}</Text>

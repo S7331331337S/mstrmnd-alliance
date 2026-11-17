@@ -3,7 +3,7 @@ import { BarChart3, Home, LayoutGrid, User } from "lucide-react-native";
 
 const TAB_BAR_BG = "#050505";
 const ACTIVE = "#ffffff";
-const INACTIVE = "#52525b";
+const INACTIVE = "#8a877d";
 
 export default function TabLayout() {
   return (

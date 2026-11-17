@@ -29,7 +29,7 @@ export default function InsightsScreen() {
                 hitSlop={{ top: 10, bottom: 10, left: 4, right: 4 }}
                 className={`px-3 py-1 rounded-full ${range === key ? "bg-[#1a1a1a]" : ""}`}
               >
-                <Text className={`text-xs ${range === key ? "text-white" : "text-[#71717a]"}`}>
+                <Text className={`text-xs ${range === key ? "text-white" : "text-[#8a877d]"}`}>
                   {key === "week" ? "This Week" : "This Month"}
                 </Text>
               </Pressable>
@@ -38,7 +38,7 @@ export default function InsightsScreen() {
         </View>
 
         <View className="bg-[#0a0a0a] border border-[#1a1a1a] rounded-3xl p-5 gap-4">
-          <Text className="text-[#71717a] text-xs tracking-widest uppercase">Overview</Text>
+          <Text className="text-[#8a877d] text-xs tracking-widest uppercase">Overview</Text>
           <View className="flex-row items-end gap-3">
             <Text className="text-white text-4xl font-bold">12,847</Text>
             <Text className="text-[#22c55e] text-sm font-medium mb-1">+12.5%</Text>
