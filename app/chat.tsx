@@ -147,7 +147,7 @@ export default function ChatScreen() {
                 <Spinner size="small" />
               </View>
             </View>
-          ) : null
+          ) : undefined
         }
       />
       <View className="px-4 pt-2" style={{ paddingBottom: insets.bottom + 8 }}>
