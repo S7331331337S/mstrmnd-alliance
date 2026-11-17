@@ -49,4 +49,4 @@ Expo Go ignores `expo-updates` for development, so `npx expo start` + Expo Go st
 
 `eas.json` → `submit.production.ios` has Team ID `7T9W2DC298`, ASC API key ID `76HNAVK2MX` and issuer ID `2693901f-d3ba-42af-98d1-19ecf07129a8` (verified in App Store Connect: the issuer ID matches, and the key is App Manager and Active). There is intentionally **no `ascApiKeyPath`**.
 
-The ASC API key (.p8) is uploaded to EAS credentials for @mstrmndgo once Expo access works; it is never committed. App Store/TestFlight submits need Steele's OK.
+The ASC API key (EAS, 76HNAVK2MX, App Manager) is uploaded to EAS credentials on @mstrmndgo; the .p8 is never committed. Linking it to an app for submission, and any App Store/TestFlight submit, needs Steele's OK.
