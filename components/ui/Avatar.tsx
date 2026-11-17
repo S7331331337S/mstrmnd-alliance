@@ -6,6 +6,8 @@ interface AvatarProps {
   size?: "sm" | "md" | "lg" | "xl";
   status?: "active" | "idle" | "thinking" | "error";
   accentColor?: string;
+  /** Spoken name (e.g. agent name). Falls back to the initials. */
+  label?: string;
 }
 
 const sizeMap = {
@@ -22,11 +24,16 @@ const statusColor: Record<string, string> = {
   error: "bg-[#ef4444]",
 };
 
-export function Avatar({ initials, size = "md", status, accentColor = "#e4e4e7" }: AvatarProps) {
+export function Avatar({ initials, size = "md", status, accentColor = "#e4e4e7", label }: AvatarProps) {
   const s = sizeMap[size];
 
   return (
-    <View className="relative self-start">
+    <View
+      className="relative self-start"
+      accessible
+      accessibilityRole="image"
+      accessibilityLabel={`${label ?? initials}${status ? `, ${status}` : ""}`}
+    >
       <View
         className={`${s.container} items-center justify-center`}
         style={{ backgroundColor: `${accentColor}25`, borderWidth: 1, borderColor: `${accentColor}40` }}

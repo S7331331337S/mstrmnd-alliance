@@ -21,7 +21,12 @@ export default function AgentsScreen() {
         title="Agents"
         showBack
         rightAction={
-          <Pressable onPress={() => toast.info("New agent coming soon")} className="w-8 h-8 items-center justify-center">
+          <Pressable
+            onPress={() => toast.info("New agent coming soon")}
+            accessibilityRole="button"
+            accessibilityLabel="New agent"
+            className="w-11 h-11 items-center justify-center"
+          >
             <Plus size={18} color="#ffffff" />
           </Pressable>
         }
@@ -34,9 +39,12 @@ export default function AgentsScreen() {
           <Pressable
             key={agent.id}
             onPress={() => setSelected(agent)}
+            accessibilityRole="button"
+            accessibilityLabel={`${agent.name}, ${agent.role}, ${agent.status}`}
+            accessibilityHint="Opens agent details"
             className="flex-row items-center gap-3 bg-[#0a0a0a] border border-[#1a1a1a] rounded-2xl px-4 py-3.5"
           >
-            <Avatar initials={agent.avatar} size="md" status={agent.status} />
+            <Avatar initials={agent.avatar} size="md" status={agent.status} label={agent.name} />
             <View className="flex-1">
               <Text className="text-white text-sm font-semibold">{agent.name}</Text>
               <Text className="text-[#71717a] text-xs mt-0.5">{agent.role}</Text>

@@ -27,7 +27,7 @@ export default function DashboardScreen() {
         <Text className="text-white text-2xl font-bold tracking-tight">Dashboard</Text>
 
         <View className="flex-row items-center gap-2 bg-[#0a0a0a] border border-[#1a1a1a] rounded-2xl px-4 py-3">
-          <View className="w-2 h-2 rounded-full bg-[#22c55e]" />
+          <View accessibilityElementsHidden importantForAccessibility="no" className="w-2 h-2 rounded-full bg-[#22c55e]" />
           <Text className="text-[#a1a1aa] text-sm">System Status</Text>
           <Text className="text-white text-sm font-medium ml-auto">All systems operational</Text>
         </View>
@@ -37,6 +37,8 @@ export default function DashboardScreen() {
             <Pressable
               key={label}
               onPress={() => router.push(href)}
+              accessibilityRole="button"
+              accessibilityLabel={label}
               className="w-[47%] bg-[#0a0a0a] border border-[#1a1a1a] rounded-2xl p-4 gap-3 active:bg-[#111111]"
             >
               <View className="w-10 h-10 rounded-xl bg-[#111111] border border-[#222222] items-center justify-center">

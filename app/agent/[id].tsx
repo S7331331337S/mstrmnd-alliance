@@ -32,6 +32,9 @@ export default function AgentDetailScreen() {
       <View className="flex-row items-center px-5 pt-4 pb-2">
         <Pressable
           onPress={() => router.back()}
+          accessibilityRole="button"
+          accessibilityLabel="Go back"
+          hitSlop={{ top: 4, bottom: 4, left: 4, right: 4 }}
           className="w-9 h-9 rounded-xl bg-[#111111] items-center justify-center mr-3"
         >
           <ArrowLeft size={18} color="#ffffff" />
@@ -45,7 +48,7 @@ export default function AgentDetailScreen() {
       >
         {/* Hero */}
         <View className="items-center gap-3 py-6 bg-[#0a0a0a] rounded-3xl border border-[#1a1a1a]">
-          <Avatar initials={agent.avatar} size="xl" status={agent.status} />
+          <Avatar initials={agent.avatar} size="xl" status={agent.status} label={agent.name} />
           <View className="items-center gap-1">
             <Text className="text-white text-2xl font-bold">{agent.name}</Text>
             <Text className="text-[#71717a] text-sm">{agent.role}</Text>
@@ -95,7 +98,7 @@ export default function AgentDetailScreen() {
               <View className="flex-row items-center justify-between">
                 <Text className="text-[#71717a] text-sm">Status</Text>
                 <View className="flex-row items-center gap-2">
-                  <View className="w-2 h-2 rounded-full" style={{ backgroundColor: STATUS_COLOR[agent.status] }} />
+                  <View accessibilityElementsHidden importantForAccessibility="no" className="w-2 h-2 rounded-full" style={{ backgroundColor: STATUS_COLOR[agent.status] }} />
                   <Text className="text-[#a1a1aa] text-sm capitalize">{agent.status}</Text>
                 </View>
               </View>

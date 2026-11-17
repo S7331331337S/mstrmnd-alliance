@@ -42,6 +42,8 @@ export default function HubScreen() {
           <Pressable
             key={title}
             onPress={() => router.push(href)}
+            accessibilityRole="button"
+            accessibilityLabel={`${title}. ${subtitle}`}
             className="flex-row items-center gap-4 bg-[#0a0a0a] border border-[#1a1a1a] rounded-2xl px-4 py-4 active:bg-[#111111]"
           >
             <View className="w-11 h-11 rounded-xl bg-[#111111] border border-[#222222] items-center justify-center">

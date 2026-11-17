@@ -26,7 +26,7 @@ export function AgentModal({ agent, visible, onClose, onChat }: AgentModalProps)
       <View className="px-5 gap-5">
         {/* Profile row */}
         <View className="flex-row items-center gap-4">
-          <Avatar initials={agent.avatar} size="lg" status={agent.status} />
+          <Avatar initials={agent.avatar} size="lg" status={agent.status} label={agent.name} />
           <View className="flex-1 gap-1">
             <Text className="text-white font-semibold text-base">{agent.name}</Text>
             <Text className="text-[#71717a] text-sm">{agent.role}</Text>

@@ -20,6 +20,7 @@ export default function KnowledgeScreen() {
         <View className="flex-row items-center gap-2 bg-[#0a0a0a] border border-[#1a1a1a] rounded-xl px-3 h-11">
           <Search size={16} color="#52525b" />
           <TextInput
+            accessibilityLabel="Search knowledge"
             placeholder="Search knowledge..."
             placeholderTextColor="#52525b"
             value={query}

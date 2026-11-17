@@ -24,6 +24,9 @@ export default function InsightsScreen() {
               <Pressable
                 key={key}
                 onPress={() => setRange(key)}
+                accessibilityRole="tab"
+                accessibilityState={{ selected: range === key }}
+                hitSlop={{ top: 10, bottom: 10, left: 4, right: 4 }}
                 className={`px-3 py-1 rounded-full ${range === key ? "bg-[#1a1a1a]" : ""}`}
               >
                 <Text className={`text-xs ${range === key ? "text-white" : "text-[#71717a]"}`}>

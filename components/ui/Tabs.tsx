@@ -21,7 +21,9 @@ export function Tabs({ tabs, activeKey, onChange }: TabsProps) {
           <Pressable
             key={tab.key}
             onPress={() => onChange(tab.key)}
-            className={`flex-1 py-2 rounded-lg items-center ${
+            accessibilityRole="tab"
+            accessibilityState={{ selected: isActive }}
+            className={`flex-1 min-h-[44px] justify-center rounded-lg items-center ${
               isActive ? "bg-[#1a1a1a]" : "bg-transparent"
             }`}
           >

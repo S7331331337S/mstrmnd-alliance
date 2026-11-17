@@ -25,13 +25,15 @@ export function Header({ title, subtitle, showBack = false, rightAction }: Heade
           {showBack && (
             <Pressable
               onPress={() => router.back()}
-              className="w-8 h-8 items-center justify-center rounded-lg active:bg-[#1a1a1a]"
+              accessibilityRole="button"
+              accessibilityLabel="Go back"
+              className="w-11 h-11 items-center justify-center rounded-lg active:bg-[#1a1a1a]"
             >
               <ArrowLeft size={20} color="#ffffff" />
             </Pressable>
           )}
           <View className="flex-1">
-            <Text className="text-white text-lg font-bold tracking-tight">{title}</Text>
+            <Text accessibilityRole="header" className="text-white text-lg font-bold tracking-tight">{title}</Text>
             {subtitle && (
               <Text className="text-[#52525b] text-xs mt-0.5">{subtitle}</Text>
             )}

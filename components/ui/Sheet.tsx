@@ -51,6 +51,8 @@ export function Sheet({ visible, onClose, title, snapPoint = 0.6, children }: Sh
         <Pressable
           className="flex-1 bg-black/60"
           onPress={onClose}
+          accessibilityRole="button"
+          accessibilityLabel="Close"
         />
         <Animated.View
           style={{
@@ -70,6 +72,9 @@ export function Sheet({ visible, onClose, title, snapPoint = 0.6, children }: Sh
               <Text className="text-white text-base font-semibold">{title}</Text>
               <Pressable
                 onPress={onClose}
+                accessibilityRole="button"
+                accessibilityLabel="Close"
+                hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
                 className="w-7 h-7 rounded-full bg-[#1a1a1a] items-center justify-center"
               >
                 <X size={14} color="#a1a1aa" />
